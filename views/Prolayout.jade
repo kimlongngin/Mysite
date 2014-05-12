@@ -1,0 +1,55 @@
+doctype html
+html
+  head
+    title #{title} - My Site
+    script(type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
+    script(type='text/javascript' src='/javascripts/jquery.countdown.js')
+    link(rel='stylesheet', href='/stylesheets/prochain.css')
+    link(rel='stylesheet', href='/stylesheets/prochain.css')
+    link(rel='stylesheet', href='/stylesheets/stylecount.css')
+
+
+  body!= body
+    div.prochain_layout
+      div.prochain_defi_head  
+        div.prochain-defi_head-left
+          img(src="http://localhost:8080/images/fin/web_et_suiteoffice_gd.png" style='width:170px;height: 130px;margin-top:10px;')
+          
+        div.prochain-defi_head-right 
+          include _menu_right
+      div.prochain_defi-menu
+        .prochain_defi-menu-left
+          a(href='/prochaindefiActivated')
+            .prochain_defi-menu-left-sub_left
+              span Accueil
+          a(href='#')
+            .prochain_defi-menu-right-sub_right
+              span Présentation
+
+        .prochain_defi-menu-right
+          a(href='#')
+            .prochain_defi-menu-right-sub_left
+              span Espace utilisateur
+          a(href='#')
+            .prochain_defi-menu-right-sub_rigth
+              span Espace Pro
+
+
+
+      div.prochain_defi_content
+        .prochain_defi_content-top
+          .prochain_defi_content-top-defi
+            block defiContent
+            
+
+          .prochain_defi_content-top-defi_bottom
+            block gift
+            .prochain_defi_content-top-defi_bottom-left
+              block gift-left
+            .prochain_defi_content-top-defi_bottom-right
+              block gift-right
+        .prochain_defi_content-gagnant
+          block gagnant
+      include _defifooter
+
+     

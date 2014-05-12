@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title #{title} - My Site
+    script(type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
+    script(type='text/javascript' src='/javascripts/jquery.countdown.js')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/home.css')
+    link(rel='stylesheet', href='/stylesheets/stylecount.css')
+
+  body!= body
+      div.mainheader  
+        block head  
+          div.loginform
+            include _head_layout
+      div.main-layout
+        .content  
+            block content
+
+      div.footer
+            block footer
+              include _footer_layout

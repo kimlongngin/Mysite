@@ -1,0 +1,139 @@
+a {
+    text-decoration: none;
+}
+
+body {
+    background-image: url("http://localhost:8080/images/HomePage/homepage-bg.jpg");
+    background-repeat: repeat-y;
+    background-position: center top;
+    padding: 0;
+    margin: 0;
+}
+
+.mainheader {
+    position: absolute;
+    z-index: 1000;    
+    width: 1315px;
+    height: 273px;
+    margin-top: -15px;
+    margin-left: -36px;
+    background-image: url("http://localhost:8080/images/HomePage/home_0052_banner.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% ;
+}
+
+
+.registerbtn{background:url('http://localhost:8080/images/HomePage/home_0045_ok.png') no-repeat; width:108px; height:59px; margin-left: 22px;
+margin-top: -12px;border:none;}
+.footer {
+background-color: #a4141c;
+width: 100%;
+z-index: 1000;
+height: 170px;
+position: absolute;
+display: table;
+
+
+}
+
+
+.main-layout {
+    width: 100%;
+    min-height: 580px;
+    height: auto;
+    border: 0px solid green;
+    position: relative;
+    display: inline;
+    overflow: hidden
+}
+.content {
+    width: 862px;
+    min-height: 700px;
+    height: auto;
+    position: relative;
+    display: table;
+    border-left: 3px solid #f29400;
+    border-right:3px solid #f29400;
+    margin-left: 194px;
+  
+    
+    background-image: url("http://localhost:8080/images/HomePage/home_0005_bord.png");
+    background-repeat: repeat-y;
+    background-position: center top;
+    background-color: #ffffff;
+    background-size: 102%;
+    
+}
+
+.loginform {
+    margin-right: 328px;
+    margin-top: 26px;   
+    float: right;
+    margin-top: 30px;
+    position: relative;
+    display: table;
+}
+
+
+.ok {
+    margin-top: -15px;
+    margin-left: 56px !important;
+}
+
+
+.main_footer {
+    
+    width: 842px;
+    min-height: 50px;
+    height: auto;
+    border: 0px solid black;
+    margin-left: 242px;
+}
+
+.register {
+    float: left;
+}
+
+.register_form {
+    position: relative;
+    display: table;
+    margin-top:280px;
+    width: 100%;
+    height: 900px;
+    padding-bottom: 370px;
+}
+
+.frmrigister {
+   
+    border: 0px solid gray;
+    text-align: center;
+    margin-left: 70px;
+}
+form td {
+    text-align: left;
+}
+h3.formtitle {
+    color: red;
+}
+.btregister {
+    width: 77px;
+    height: 27px;
+    background-color: #f5a412;
+    color: #ec6716;
+    box-shadow: none !important;
+    border: none !important;
+   font-weight: bold;
+}
+form.frmrigister input[type="text"] {
+        width: 225px;
+        height: 24px;
+}
+form.frmrigister input[type="password"] {
+        width: 225px;
+        height: 24px;
+}
+form.frmrigister input[type="email"] {
+        width: 225px;
+        height: 24px;
+}

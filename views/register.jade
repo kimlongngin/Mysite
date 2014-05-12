@@ -1,0 +1,112 @@
+extends layout 
+block content
+ div.menu
+    ul
+        li
+            a(href="/home") 
+                img(src="http://localhost:8080/images/HomePage/home_0042_accueil.png")
+        li
+            a(href="#")
+                img(src="http://localhost:8080/images/HomePage/home_0039_presentation.png")
+        li
+            a(href="#")
+                img(src="http://localhost:8080/images/HomePage/home_0029_utilisateur.png")
+        li
+            a(href="#")
+                img(src="http://localhost:8080/images/HomePage/home_0026_Pro.png")
+
+ div.register_form
+  
+        form(name="frmregister", class="frmrigister" method='post')
+            table
+                tr
+                    td
+                        h3.formtitle S'enregistrer    
+
+                tr
+                    td
+                        p Nom Société * :
+                     
+                    td
+                        input(type='text', name='txtname_orgine' required)
+                 tr
+                    td
+                        p Noméro Siren * : 
+                    td
+                        input(type='text', name='txtst' required)
+                 tr
+                    td
+                       p Titre* : 
+                    td
+                        input(type="radio" name="sex" value="male" checked="true")
+                        | M.
+                        input(type="radio" name="sex" value="female")
+                        | Mme
+                tr
+                    td
+                       p Prénom* : 
+                    td
+                        input(type='text', name='txtfamily_name' required)
+                tr
+                    td
+                        p Nom* :
+                    td
+                        input(type='text', name='txtlastname' required)
+                tr
+                    td
+                        p Numéro de rue / Adresse* : 
+                    td
+                        input(type='text', name='txtaddress' required)
+                
+                tr
+                    td
+                        p C.P *:
+                    td
+                        input(type='text', name='txtcp' required)
+                tr
+                    td
+                        p Ville *:
+                    td
+                        input(type='text', name='txtcity' required)
+
+                tr
+                    td
+                        p Pays * :
+                    td 
+                   
+                        select(name='country_id', id='country_id').reg_option
+                            - each sasdata in sas
+                               option(value=sasdata._id)=sasdata.pay_country
+            
+                tr
+                    td
+                        p E-mail * : 
+                    td
+                        input(type='email', name='txtemail' required)
+                tr
+                    td
+                        p Confirmation E-mail * :
+                    td
+                        input(type='email', name='txtcon_email' required)
+                tr
+                    td
+                        p Téléphone * :
+                    td
+                        input(type='text', name='txttel' required)
+                tr
+                    td
+                        p Mot de passe * :
+                    td
+                        input(type='password', name='txtpwd' required)
+                tr
+                    td
+                        p Confirmer not de passe * :
+                    td
+                        input(type='password', name='txt_con_pwd' required)
+                tr
+                    td
+                       
+                    td
+                        input(type='submit', value='Valider' class='btregister')
+
+block append footer  

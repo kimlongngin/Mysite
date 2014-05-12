@@ -1,0 +1,127 @@
+extends layout
+block content
+  span(style='display:none;')#countnum=countNum
+  script.
+      $(function() {
+   
+      var getnum =  document.getElementById('countnum').innerHTML;
+        console.log(getnum);
+
+        var d = new Date();
+        var h =d.getHours();
+        var n = d.getMinutes();
+        var s =d.getSeconds();
+        var totalminutes;
+        var totalseconds;
+        var myhour;
+      
+        myhour=getnum/60;
+        console.log('Minute Total:'+myhour);
+        totalminutes = n+myhour;
+
+
+        d.setHours(h,totalminutes, s);
+           //var endDate = "Fri May 09, 2014 09:30:25";
+         var endDate = d.toString();
+        $('.countdown.simple').countdown({ date: endDate });
+        $('.countdown.styled').countdown({
+          date: endDate,
+          render: function(data) {
+            $(this.el).html("<div>" + this.leadingZeros(data.hours, 2) + " <span>hrs</span></div><div>" + this.leadingZeros(data.min, 2) + " <span>min</span></div><div>" + this.leadingZeros(data.sec, 2) + " <span>sec</span></div>");
+          }
+        });
+
+        $('.countdown.callback').countdown({
+          date: +(new Date) + 10000,
+          render: function(data) {
+            $(this.el).text(this.leadingZeros(data.sec, 2) + " sec");
+          },
+          onEnd: function() {
+            $(this.el).addClass('ended');
+          }
+        }).on("click", function() {
+          $(this).removeClass('ended').data('countdown').update(+(new Date) + 10000).start();
+        });
+
+      });
+    div.menu
+        ul
+          li
+              a(href="/home") 
+                  img(src="http://localhost:8080/images/HomePage/home_0042_accueil.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0039_presentation.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0029_utilisateur.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0026_Pro.png")
+
+                  
+    div.titlehomepage
+        div.giftpic
+            img(src="http://localhost:8080/images/HomePage/home_0034_cadeau.png")
+        div.chellengizpic
+            img(src="http://localhost:8080/images/HomePage/home_0033_challengiz.png")
+        div.encourpic
+            img(src="http://localhost:8080/images/HomePage/home_0032_en-cours.png")
+    div.chellengizhomepage
+        div.chellengizhomepage-left
+           .chellengizhomepage-left-a
+               img(src="http://localhost:8080/images/HomePage/home_0031_1_encours.png")
+           .chellengizhomepage-left-content
+               - each data in dataclient
+                  div=data.name
+
+        div.chellengizhomepage-right
+           .chellengizhomepage-right-b
+               img(src="http://localhost:8080/images/HomePage/home_0030_2_encours.png")
+           .chellengizhomepage-right-content
+                p blablablablablablablablablabla
+                p blablablablablablablablablabla
+                p blablablablablablablablablabla
+        div.bientot
+            .hour_bientot
+    div.prochaindefi
+        .prochaindefi-left
+            div.proc_pic_head
+                  img(src="http://localhost:8080/images/HomePage/prochain.png")
+            div.prochain_text_head
+                   img(src="http://localhost:8080/images/HomePage/prochain_text.jpg")
+            div.count_time
+                div.countdown.styled
+            div.gagner
+
+
+            div.gagner_one
+               .ganger_one_left
+                    img(src="http://localhost:8080/images/HomePage/home_0012_1_defi.png" )
+               .ganger_one_right
+                  img(src="http://localhost:8080/images/HomePage/home_0022_photo_ex1.png" width="130px")
+
+
+            div.gagner_two
+               .ganger_two_left
+                      img(src="http://localhost:8080/images/HomePage/home_0013_2_defi.png")
+               .ganger_two_right
+                      img(src="http://localhost:8080/images/HomePage/home_0021_photo_ex2.png" width="130px")
+        .prochaindefi-right
+            
+
+block append footer
+        div.main_footer
+            table(style="width:100%; color:white;")
+                tr
+                    td 
+                        p blablablablablablablabla 
+                    
+                    td 
+                        p blablablablablablablabla
+              
+                    td 
+                        p blablablablablablablabla
+               
+                    td 
+                        p blablablablablablablabla

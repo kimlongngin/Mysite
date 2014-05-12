@@ -1,0 +1,244 @@
+.menu {
+  
+  position: absolute;
+  z-index: 1000;
+  border: 0px solid gray;
+  margin-top: 188px;
+  margin-left: 445px;   
+}
+
+ul
+{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    margin-left: 20px;
+}
+
+li {
+    display: inline;
+    padding-right: 20px;
+    text-decoration: none;
+}
+
+.titlehomepage
+ {
+      position: absolute;
+      z-index: 1000;
+      width: 655px;
+      height: 68px;
+      border: 0px solid gray;
+      margin-top: 292px;
+      margin-left: 167px;
+      box-shadow: 2px 2px 5px 1px rgba(100, 100, 100, 0.5);
+      border-radius: 5px;
+}
+.giftpic {
+    margin-top: -28px;
+}
+
+.chellengizpic {
+    margin-top: -69px;
+    margin-left: 89px;
+}
+.encourpic {
+    margin-top: -26px;
+    margin-left: 296px;
+}
+
+.chellengizhomepage
+ {
+      position: relative;
+      display: inline-block;
+      z-index: 1000;
+      width: 655px;
+      min-height: 235px;
+      height: auto;
+      border: 0px solid gray;
+      margin-top:376px;
+      margin-bottom: 100px;
+      margin-left: 167px;
+      box-shadow: 2px 2px 5px 1px rgba(100, 100, 100, 0.5);
+      border-radius: 5px;
+}
+.chellengizhomepage-left {
+    width: 48%;
+    float: left;
+    height: auto;
+     border: 0px solid gray;
+}
+.chellengizhomepage-right {
+    width: 48%;
+    height: auto;
+    float: right;
+    border: 0px solid gray;
+}
+.chellengizhomepage-left-a {
+    width: 20%;
+    border:0px solid green;
+    float: left;
+}
+.chellengizhomepage-left-content {
+    width: 70%;
+    border: 0px solid green;
+    height: auto;
+    float: right;
+    margin-bottom: 6px;
+}
+
+
+.chellengizhomepage-right-b {
+    width: 20%;
+    border: 0px solid green;
+    float: left;
+}
+.chellengizhomepage-right-content {
+    width: 70%;
+    border: 0px solid green;
+    height: auto;
+    float: right;
+    margin-bottom: 6px;
+}
+
+
+
+
+.prochaindefi
+ {
+    position: relative;
+    display: table;
+    z-index: 1000;
+    width: 655px;
+    min-height: 235px;
+    height: auto;
+    border: 0px solid gray;
+  
+    margin-bottom: 50px;
+    margin-left: 167px;
+     
+}
+
+
+.prochaindefi-left
+ {
+      position: relative;
+      display: table;
+      z-index: 1000;
+      width: 313px;
+      min-height: 450px;
+      height: auto;
+      border: 0px solid gray;
+      box-shadow: 2px 2px 5px 1px rgba(100, 100, 100, 0.5);
+      border-radius: 5px;
+      float: left;
+      background-size: 104%;
+      background-repeat: no-repeat;
+      background-color: #ffffff;
+}
+
+.prochaindefi-right
+ {
+      position: relative;
+      z-index: 1000;
+      width: 315px;
+      min-height: 450px;
+      height: auto;
+      border: 0px solid gray;
+      box-shadow: 2px 2px 5px 1px rgba(100, 100, 100, 0.5);
+      border-radius: 5px;
+      float: right;
+      background-color: #ffffff;
+      
+}
+
+
+.bientot {
+    min-height: 560px;
+    position: absolute;
+    z-index: 1000;
+    width: 215px;
+   
+    height: auto;
+  
+    float: left;
+    margin-left: -255px;
+    margin-top: -60px;
+    background-image: url("http://localhost:8080/images/HomePage/home_0001_bientôt.png");
+}
+
+.proc_pic_head {
+    margin-top: -83px;
+    margin-left: -26px;
+}
+.prochain_text_head {
+    margin-top: -43px;
+    margin-left: 20px;
+    text-align: center;
+}
+.count_time {
+    height: 90px;
+    border: 0px solid gray;
+    text-align: center;
+}
+.gagner {
+    height: 54px;
+    background-color: #b83415;
+    margin-top: 25px;
+}
+.gagner_one {
+ 
+    height:auto;
+}
+.gagner_two {
+  
+    height: auto;
+}
+
+.ganger_one_left {
+    width: 20%;
+    float: left;
+    border: 0px solid gray;
+    height: auto;
+}
+.ganger_one_right {
+     width: 70%;
+    float: right;
+    border: 0px solid gray;
+    height: auto;
+}
+
+.ganger_two_left
+{
+    width: 20%;
+    float: left;
+    border: 0px solid gray;
+    height: auto;
+}
+.ganger_two_right {
+    width: 70%;
+    float: right;
+    border: 0px solid gray;
+    height: auto;
+}
+
+
+.hour_bientot {
+    margin-top: 98px;
+    text-align: center;
+   
+    color: white;
+}
+.login_name {
+    width: 180px;
+    height: 23px;
+    margin-bottom: 10px;
+}
+.login_pwd {
+    width: 180px;
+    height: 23px;
+}
+
+.reg_option {
+    width: 229px;
+    height: 29px;
+}

@@ -1,0 +1,84 @@
+extends Prolayout
+
+block defiContent
+  script.
+      $(function() {
+        var endDate = "May 09, 2014 17:40:25";
+
+        $('.countdown.simple').countdown({ date: endDate });
+
+        $('.countdown.styled').countdown({
+          date: endDate,
+          render: function(data) {
+            $(this.el).html("<div>" + this.leadingZeros(data.hours, 2) + " <span>hrs</span></div><div>" + this.leadingZeros(data.min, 2) + " <span>min</span></div><div>" + this.leadingZeros(data.sec, 2) + " <span>sec</span></div>");
+          }
+        });
+
+        $('.countdown.callback').countdown({
+          date: +(new Date) + 10000,
+          render: function(data) {
+            $(this.el).text(this.leadingZeros(data.sec, 2) + " sec");
+          },
+          onEnd: function() {
+            $(this.el).addClass('ended');
+          }
+        }).on("click", function() {
+          $(this).removeClass('ended').data('countdown').update(+(new Date) + 10000).start();
+        });
+
+      });
+
+    div.prochain_defi_content-top-defi-left
+     .defimenu
+       a(href) 
+         .defimenu_sub-left Challengiz 
+       a(href)   
+         .defimenu_sub-center Challengiz en cours 1
+       a(href)
+        .defimenu_sub-right Challengiz en cours 2
+      .defiContent
+       p(style='text-align:center;font-weight:bold') prochain défi  
+       div(style='margin-top:20px;text-align:center;')
+        p Publicité Client qui paye ce challenge
+       div(style='margin-top:40px;text-align:center;font-size:20px;font-weight:bold;')
+        p Le prochain Challenge démarre dans :
+       div(style='margin-top:40px;text-align:center;font-size:35px;font-weight:bold;')
+        div.countdown.styled
+       div(style='margin-top:40px;text-align:center;font-size:18px;')
+        p Publicité Client qui paye ce challenge
+    div.prochain_defi_content-top-defi-right
+     div(style='text-align:center;font-weight:bold')
+      p Challenge à venir :
+
+
+
+block gift-left
+ 
+  div(style='text-align:center;')
+    p CADEAU OFFERT POUR CE CHALLENGE 
+      br
+      |1er CADEAU :
+  div(style='text-align:center;')
+ 
+     img(src="http://localhost:8080/images/HomePage/"+gift1) 
+block gift-right
+ 
+  div(style='text-align:center;')
+    p CADEAU OFFERT POUR CE 
+     br
+     |CHALLENGE 
+     br
+     |2ème CADEAU :
+  div(style='text-align:center;')
+ 
+     img(src="http://localhost:8080/images/HomePage/"+gift2) 
+
+
+
+
+block gagnant
+  - data={name:["Il y a 1 heure Christophe a Gagné1 chèque de 400€ !","Il y a 2 heure Nadine A Gagné1 Ipad3!","Il y a 4 heureFirulo a Gagné1 Scooter !","Il y a 1 jour Cyril a Gagné1 voyage de 400€ !"]}
+  
+  - each d in data.name
+    div(style='border:1px solid black;border: 1px solid black;width: 250px;height: 118px;margin-top: 16px;margin-left: 10px;display:inline-block;')
+      div=d
