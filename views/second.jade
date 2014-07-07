@@ -1,0 +1,156 @@
+extends layout
+block content
+  span(style='display:none;')#countnum=countnum
+  script.
+      $(function() {
+
+        var getnum =  document.getElementById('countnum').innerHTML;
+        var d = new Date();
+        var h =d.getHours();
+        var n = d.getMinutes();
+        var s =d.getSeconds();
+        var totalminutes;
+        var totalseconds;
+        var myhour;
+        var divsec;
+
+        myhour=getnum/60;
+       
+        totalminutes = n+myhour;
+
+        divsec=getnum%60+s;
+   
+        d.setHours(h,totalminutes,divsec);
+
+
+        //var endDate = "Fri May 09, 2014 09:30:25";
+        var endDate = d.toString();
+        $('.countdown.simple').countdown({ date: endDate });
+        $('.countdown.styled').countdown({
+          date: endDate,
+          render: function(data) {
+            $(this.el).html("<div>" + this.leadingZeros(data.hours, 2) + " <span>hrs</span></div><div>" + this.leadingZeros(data.min, 2) + " <span>min</span></div><div>" + this.leadingZeros(data.sec, 2) + " <span>sec</span></div>");
+          }
+
+          
+          
+        });
+
+        $('.countdown.callback').countdown({
+          date: +(new Date) + 10000,
+          render: function(data) {
+            $(this.el).text(this.leadingZeros(data.sec, 2) + " sec");
+          },
+          onEnd: function() {
+            $(this.el).addClass('ended');
+          }
+        }).on("click", function() {
+          $(this).removeClass('ended').data('countdown').update(+(new Date) + 10000).start();
+        });
+
+      });
+
+    div.menu
+        ul
+          li
+              a(href="/home") 
+                  img(src="http://localhost:8080/images/HomePage/home_0042_accueil.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0039_presentation.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0029_utilisateur.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0026_Pro.png")
+
+                  
+    div.titlehomepage_index
+        div.giftpic
+            img(src="http://localhost:8080/images/HomePage/home_0034_cadeau.png")
+        div.chellengizpic
+            img(src="http://localhost:8080/images/HomePage/home_0033_challengiz.png")
+        div.encourpic
+            img(src="http://localhost:8080/images/HomePage/home_0032_en-cours.png")
+    div.chellengizhomepage_index_second
+
+
+        div.chellengizhomepage-left
+           .chellengizhomepage-left-a
+              p
+              | Un
+              span(style='color:red;') 2'eme gros eadeau
+              | est offert pur le joueur
+              br
+              | qui accumule le plus de j'aime.'
+              br
+              p
+              span(style='color:red;') Cliquez sur votre photo pr'ef'er'ee
+              br
+              |II Vous reste :
+              br
+
+              span.countdown.styled
+
+           .chellengizhomepage-left-content
+            
+              if countnum>0
+                img(src="http://localhost:8080/images/HomePage/21.jpg" style='width:130px;height:130px;'  class="img-thumbnail")
+              else
+                img(src="http://localhost:8080/images/HomePage/24.jpg" style='width:130px;height:130px;' class="img-thumbnail")
+           
+           div(style="float:right;width:49%;")
+              p(style='color:red;') Le gagant du 1er
+              span cadcau est:
+
+        div.chellengizhomepage-right    
+          - data={name:["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg","10.jpg","11.jpg","12.jpg","13.jpg","14.jpg","15.jpg","16.jpg","17.jpg","18.jpeg","19.jpg","20.jpg","21.jpg","22.jpg","23.jpg","24.jpg","25.jpg"]}
+
+          - i = 0;
+          - j = 0;
+          - each d in data.name
+            - j = j+1;
+            if j<=20
+              div(class="img-rounded",style='border-radius:2px;margin-bottom:0px;position:relative;display:inline-block;padding-left:7px;margin-top:5px;width:80px;height:65px;background-color:#e95d0f;background-position:center;background-size:80px 60px;background-repeat:no-repeat;text-align:center; margin-left:5px;background-image:url(http://localhost:8080/picture/'+d+')')
+                a(href="/second/?id="+d )
+                    div(style="margin-left:5px;margin-top:42px;background-color:yellow;text-align:center;width:60px;height:20px;border-radius:5px;opacity: 0.5;")
+                      span(style="font-weight:bold;color:red;") Voter
+
+              - i = i +1;
+                if i==5
+                  - i=0
+                  br
+            else
+              h1(style="display:none;")=j
+       
+    div.prochaindefi_index_second
+        .prochaindefi-left_index_second
+            div(style='position:relative; display:inline;min-height:120px;height:auto;')   
+                img(style="margin-top:60px;margin-left:170px;" src="http://localhost:8080/images/HomePage/home_0053_PUB.png")            
+        .prochaindefi-right_index_second
+            div(style='position:relative; display:inline;min-height:120px;height:auto;')   
+                img(style="margin-top:60px;margin-left:170px;" src="http://localhost:8080/images/HomePage/home_0053_PUB.png")          
+        
+    div.ganger_index_second
+      div(style='position:absolute;margin-top:-20px;width:100%;height:94px;background-image:url("http://localhost:8080/images/HomePage/index_def.png");background-repeat: no-repeat;background-position:center;background-size:100%;')
+
+      div(style='position:relative;border:0px solid black;width:100%;min-height:175px;height:auto;margin-top:85px;')
+
+        div(style='position:relative;display:inline;float:left;border:0px solid gray;height:170px;width:49%;border-radius:10px;')
+          .ganger_one_left
+              img(src="http://localhost:8080/images/HomePage/home_0012_1_defi.png" )
+          .ganger_one_right
+              img(src="http://localhost:8080/images/HomePage/"+gift1 width="130px")          
+     
+        div(style='position:relative;float:right;border:0px solid gray;height:100%;width:49%;height:170px;border-radius:10px;')
+          .ganger_two_left
+              img(src="http://localhost:8080/images/HomePage/home_0013_2_defi.png")
+          .ganger_two_right
+              img(src="http://localhost:8080/images/HomePage/"+gift2 width="130px")      
+
+      div(style='position:relative;border:0px solid black;width:100%;height:60px;background-image:url("http://localhost:8080/images/HomePage/index_defi_footer.png");background-repeat:no-repeat;margin-top:10px;margin-bottom:10px;background-position:center;background-size:100%;')
+       
+block append footer
+        div.main_footer
+            

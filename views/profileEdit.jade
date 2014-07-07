@@ -1,0 +1,87 @@
+extends layout
+
+block content
+    //link(rel='stylesheet', href='stylesheets/timesheets.css')
+    div.menu
+        ul
+          li
+              a(href="/home") 
+                  img(src="http://localhost:8080/images/HomePage/home_0042_accueil.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0039_presentation.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0029_utilisateur.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0026_Pro.png")
+
+    div.memberContent
+
+      div(class="navbar navbar-default" role="navigation").memberMenu
+        include _memberMenu
+        
+      div.memberForm_profile_content
+       div.memberForm_profile_title
+          p(style="position:relative;padding-top:9px;") Company Information
+       
+       div.memberForm
+
+            form(method='post', class="form-horizontal", role="form")
+
+              .form-group
+                label.col-sm-2.control-label(for='inputEmail3') First Name
+                .col-sm-10
+                  input.form-control(type='text', maxlength='50', name='txtfirstname' value=firstname)
+            
+
+              .form-group
+                label.col-sm-2.control-label(for='inputEmail3') Last Name
+                .col-sm-10
+                  input#inputEmail3.form-control(type='text', maxlength='50', name='txtlastname' value=lastname)
+              
+            
+              .form-group
+                label.col-sm-2.control-label Your Email
+                .col-sm-10
+                  input.form-control(type='email', maxlength='50', name='txtemail' value=email)
+            
+              .form-group
+                label.col-sm-2.control-label Confirm Email
+                .col-sm-10
+                  input.form-control(type='email', maxlength='50', name='txtconfirmemail')
+             
+              .form-group
+                label.col-sm-2.control-label Current Password
+                .col-sm-10
+                  input.form-control(type='password', maxlength='50', name='txtpassword')
+    
+              .form-group
+                label.col-sm-2.control-label Confirm Password
+                .col-sm-10
+                  input.form-control(type='password', maxlength='50', name='txtconfirmpassword')
+
+              .form-group
+                label.col-sm-2.control-label Telephone
+                .col-sm-10
+                  input.form-control(type='tel', maxlength='50', name='txttel' value=tel)
+
+
+              br
+              label(for='com_url')
+              input#selectedFile2(type='file', style='display: none;' onchange="readURLEdit(this,img2,image1name);" name="f2")
+              button.btn.btn-default.btn-lg(type='button' onclick='CallFile("selectedFile2")' style="margin-bottom:20px;") Choose Profile
+              br
+              label
+              img(id="img2" name="img2" src="http://localhost:8080/images/HomePage/NoPhoto.gif" class="img-thumbnail" style="width:120px;height:120px;") 
+              br
+              label
+              p(style="display:none;")#image1name
+
+   
+              hr
+              label(class="pp_close") 
+              input.submitButton(type='submit', value='Save', name='submit' class="btn btn-primary btn-lg" style="width:150px;margin-bottom:20px;")
+              br
+

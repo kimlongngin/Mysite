@@ -1,0 +1,186 @@
+
+// View : memberspace will happen while click on the MyAdvertise menu 
+// controller: on member.js Routs on memberspace
+// Method     : Client can create new advertise by chose photo, gift, public photo or videos
+// Action     : We can save all content to database by click send button
+
+extends layout
+block content  
+    div.menu
+        ul
+          li
+              a(href="/home") 
+                  img(src="http://localhost:8080/images/HomePage/home_0042_accueil.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0039_presentation.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0029_utilisateur.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0026_Pro.png")
+    
+
+    div.memberContent
+      
+      div(style="position:relative;width:100%;height:auto;border:0px solid gray;")    
+        div.titlespace
+          p(style="text-align:left;font-weight:bold;font-size:15px;") Edit Advertisement
+
+        form(method="post" role="form" class="form-inline" name="frmspace" action="/updateAdvertise")
+          input(type="text" style="display:none;" name="mypubid" value=pubid)
+          br
+          label Titre   : 
+          input(type="text" class="form-control" name="txttitre" style="width:400px;" required)
+
+          
+          
+          div(class="form-inline formspace")
+            lable(class="col-sm-2 control-label") 
+            div(class="col-sm-10" style="text-align:right;border:none !important;")
+                table(style="border:none !important;width:100%;margin-left:18px;")
+                  tr
+                    th 1
+                    th 2
+                    th 3
+                    th 4
+                    th 5
+
+            lable(class="col-sm-2 control-label") Photo : 
+            div(class="col-sm-10" style="border:none !important;")
+              .row
+                table(style="text-align:left;width:98%;")
+                  tr
+                    td
+                      input#selectedFile1(type='file', style='display: none;' onchange="readURL(this,img1,image1name);" name="f1" value="bt1" )
+                      input(type='submit', onclick='CallFile("selectedFile1");', value='Browse1' class="btn btn-info" name="btf1")
+                   
+                    td 
+                      input#selectedFile2(type='file', style='display: none;' onchange="readURL(this,img2,image2name);" name="f2")
+                      input(type='submit', onclick='CallFile("selectedFile2")', value='Browse2' class="btn btn-info" name="btf2")
+
+                    td 
+                      input#selectedFile3(type='file', style='display: none;' onchange="readURL(this,img3,image3name);" name="f3")
+                      input(type='submit',onclick='CallFile("selectedFile3")', value='Browse3' class="btn btn-info" name="btf3") 
+
+                    td 
+                      input#selectedFile4(type='file', style='display: none;' onchange="readURL(this,img4,image4name);" name="f4")
+                      input(type='submit',onclick='CallFile("selectedFile4")', value='Browse4' class="btn btn-info" name="btf4")
+
+                    td 
+                      input#selectedFile5(type='file', style='display: none;' onchange="readURL(this,img5,image5name);" name="f5")
+                      input(type='submit', onclick='CallFile("selectedFile5");', value='Browse5' class="btn btn-info" name="btf5") 
+
+
+            lable(class="col-sm-2 control-label")
+            div(class="col-sm-10" style="border:none !important;")
+              .row
+                table(style="text-align:left;width:98%;")
+                  tr
+                    td
+                      p(style="width:80px;border:0px solid gray;height:20px;")#image1name 
+                    td 
+                      p(style="width:80px;border:0px solid gray;height:20px;")#image2name 
+                    td 
+                      p(style="width:80px;border:0px solid gray;height:20px;")#image3name 
+                    td 
+                      p(style="width:80px;border:0px solid gray;height:20px;")#image4name 
+                    td 
+                      p(style="width:80px;border:0px solid gray;height:20px;")#image5name 
+
+
+
+            lable(class="col-sm-2 control-label")
+            div(class="col-sm-10" style="border:none !important;")
+              .row
+                table(style="text-align:left;width:98%;margin-left:-8px;")
+                  tr
+                    td
+                      img(id="img1" name="img1" src="http://localhost:8080/images/HomePage/NoPhoto.gif" class="img-circle" style="width:90px;height:90px;" value="Hi")
+                    td 
+                      img(id="img2" name="img2" src="http://localhost:8080/images/HomePage/NoPhoto.gif" class="img-circle" style="width:90px;height:90px;") 
+                    td 
+                      img(id="img3" name="img3" src="http://localhost:8080/images/HomePage/NoPhoto.gif" class="img-circle" style="width:90px;height:90px;")
+                    td 
+                      img(id="img4" name="img4" src="http://localhost:8080/images/HomePage/NoPhoto.gif" class="img-circle" style="width:90px;height:90px;")
+                    td 
+                      img(id="img5" name="img5" src="http://localhost:8080/images/HomePage/NoPhoto.gif" class="img-circle" style="width:90px;height:90px;") 
+
+            div(style="position:relative;display:inline-block;width:100%;margin-top:10px;")
+              lable(class="col-sm-2 control-label") Video :
+              div(class="col-sm-10" style="border:none !important;")
+                .row
+                  table(style="text-align:left;width:98%;margin-left:-8px;")
+                    tr
+                      td 
+                        input#xnvideos(type='file', style='display: none;' name="xvideo1")
+                        input(type='button', value='Browse' class="btn btn-info",onclick='CallFile("xnvideos")')
+                       
+
+            div(style="position:relative;display:inline-block;width:100%;margin-top:10px;")
+               video(width='100%', height='300', controls='')
+                  source(type='video/mp4', src='movie.mp4')
+                  source(type='video/ogg', src='movie.ogg')    
+
+
+             div(style="position:relative;display:inline-block;width:100%;margin-top:10px;" class="form-group")
+              lable(class="col-sm-4 control-label") URL de votre site internet :
+              .col-sm-8     
+                input(type='text', name='txturl' class="form-control" style="width:400px !important;" required)
+
+
+
+
+          div(class="form-inline formspace")              
+            div(style="position:relative;display:inline-block;width:100%;margin-top:10px;" class="form-group")
+              lable(class="col-sm-2 control-label") Votre Logo :
+              .col-sm-3       
+                select.form-control(id="optlogo" name="optlogo" style="width:250px;")
+                  option Choose Pub
+                 
+              img(src="http://localhost:8080/images/HomePage/help.png"  data-toggle='tooltip', data-placement='left', title='Tooltip on left' style="width:25px;height:25px;margin-top:2px;") 
+
+            div(style="position:relative;display:inline-block;width:100%;margin-top:10px;" class="form-group")
+              lable(class="col-sm-7 control-label") Publication a droite du compte du compte_a_rebours:
+              .col-sm-2       
+                select.form-control(name="optpublish",id="optpublish" style="width:250px;")
+                  option Choose Pub
+                  
+              img(src="http://localhost:8080/images/HomePage/help.png"  data-toggle='tooltip', data-placement='left', title='Tooltip on left' style="width:25px;height:25px;margin-top:2px;") 
+
+            div(style="position:relative;display:inline-block;width:100%;margin-top:10px;" class="form-group")
+              lable(class="col-sm-7 control-label") Publication lorsque le compte a rebours sera a 0, alafin du compte a rebours et avant la publication du defi:
+
+            div(style="position:relative;display:inline-block;width:100%;margin-top:10px;" class="form-group form-inline")
+              .col-sm-6      
+                select.form-control(name="optimagedefi" id="optimagedefi" style="width:250px;")
+                  option Choose Pub
+                 
+              .col-sm-4
+                input#addmore(type='file', style='display: none;')
+                
+                img(src="http://localhost:8080/images/HomePage/help.png"  data-toggle='tooltip', data-placement='left', title='Tooltip on left' style="width:25px;height:25px;margin-top:-8px;") 
+
+                button(type='button', onclick='CallFile("addmore");',value='Browse',style="background:none;box-shashow:none;border:none;")
+                  img(src="http://localhost:8080/images/HomePage/plus-sign.png" style="width:50px;height:50px;margin-top:-8px;")
+
+            div(style="position:relative;display:inline-block;width:100%;margin-top:10px;" class="form-group")
+              lable(class="col-sm-4 control-label") Image a la fin du de fi :
+              .col-sm-2       
+                select.form-control(name="optlafin" id="optlafin" style="width:250px;")
+                  option Choose Pub
+                 
+              img(src="http://localhost:8080/images/HomePage/help.png"  data-toggle='tooltip', data-placement='left', title='Tooltip on left' style="width:25px;height:25px;margin-top:2px;") 
+            hr 
+
+            a(href="/memberAdvertise" class="btn btn-primary btn-lg active" style="margin-left:30px;") Cancel
+
+            input(type="submit" value="Edit" class="btn btn-primary btn-lg active" style="width:100px;margin-left:15px;")
+               
+
+
+                
+       
+          
+        

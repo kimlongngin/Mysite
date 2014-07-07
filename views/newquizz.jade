@@ -1,0 +1,120 @@
+// Controller : newquizz will happen while create new button click and call this
+// controll on memberspace.js Routs on newquizz 
+// Action     : Choose number of quizz, the page will reload while click on the select // number option and the quizz form will occure follow the number of quizz selected
+
+extends layout
+  
+block content
+    
+    div.menu
+        ul
+          li
+              a(href="/home") 
+                  img(src="http://localhost:8080/images/HomePage/home_0042_accueil.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0039_presentation.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0029_utilisateur.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0026_Pro.png")
+
+    div.memberContent
+      div(class="navbar navbar-default" role="navigation").memberMenu
+        include _myquizzmenu
+
+      div(style="position:relative;width:100%;height:auto;border:0px solid gray;")    
+        div.titlespace
+          p(style="text-align:left;font-weight:bold;font-size:15px;") Cr'eer votre publicit'e
+        form(role="form" method="post" action="/newquizz")
+          .form-group
+            Label Number of question   : 
+            select.form-control(name="txtnumber" id="txtnumber" onchange="report(this.value)")
+              option 
+              option 1
+              option 2
+              option 3
+              option 4
+              option 5
+              option 6
+
+        form(role="form" method="post")
+          br
+          label Titre   : 
+          input.form-control(type="text" name="txttitle" required)
+        
+          hr
+          // This block will create more form depend on select option
+          - n=number
+          -for (var i=0;i<n;i++){    
+              .form-group
+              
+              div(class="form-inline formspace" style="padding-top:10px;")
+                table(style="width:80%;" border=0)
+                  tr
+                    td
+                      span Question 
+                        label=i+1
+                    td
+                      input(type="text" name="txtq" style="width:100%;" required)
+                    td
+                      label ?
+                  tr
+                    td(colspan=2 style="text-align:right;width:100%;")
+                      label Check the goal answer
+                  tr
+                    td
+                      label Response :
+                    td
+                      table(style="text-align:center;width:80%;" space=0)
+                        tr
+                          td 
+                            input(type="text" style="width:100%;" name="txtanswer1" required)
+                          td 
+                            .checkbox
+                              label
+                                input(type='checkbox')
+                  tr  
+                    td
+                      label
+                    td(style="width:0%;border:0px solid gray;")
+                      table(border=0 style="text-align:center;width:80%;")
+                        tr
+                          td 
+                            input(type="text" style="width:100%;" name="txtanswer2" required)
+                          td 
+                            .checkbox
+                              label
+                                input(type='checkbox') 
+                        tr
+                          td 
+                            input(type="text" style="width:100%;" name="txtanswer3" required)
+                          td 
+                            .checkbox
+                              label
+                                input(type='checkbox') 
+                    td(rowspan=2 style="")
+                      input(type="submit" value="Browse" class="btn btn-default")
+                      span(style="text-align") (Option)
+                    td
+                      img(src="http://localhost:8080/images/HomePage/help.png"  data-toggle='tooltip', data-placement='left', title='Tooltip on left' style="width:25px;height:25px;margin-top:-8px;") 
+
+                   
+                  tr
+                    td
+                      label
+                    td
+                      table(style="width:80%;")
+                        tr
+                          td 
+                            input(type="text" style="width:100%;" name="txtanswer4" required)
+                          td 
+                            .checkbox
+                              label
+                                input(type='checkbox') 
+          - }
+          input(type="submit" value="Save")
+      br
+            

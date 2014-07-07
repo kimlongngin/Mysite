@@ -1,0 +1,53 @@
+
+a.review-site {
+    background: none repeat scroll 0 0 #7C4E95;
+    color: #FFFFFF;
+    display: block;
+    font-size: 1.5em;
+    padding: 5px 0;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease 0s;
+    width: 150px;
+}
+a {
+    color: #666666;
+    text-decoration: none;
+}
+
+.submitButton {
+    background: none repeat scroll 0 0 #7C4E95;
+    border: 1px solid #7C4E95;
+    border-radius: 0;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 30px;
+    padding: 15px 0;
+    transition: all 0.3s ease 0s;
+    width: 180px;
+}
+
+* { margin: 0; padding: 0; }
+body { font-family: Georgia, "Times New Roman", Times, serif; font-size: 1em; font-weight: normal; line-height: 1.2em; color: #666; background: #f2f2f2; }
+h1, h2, h3, h4, h5, h6 { font-weight: normal; color: #333; }
+h1 { font-size: 1.125em; }
+h2 { font-size: 1em; }
+h3 { font-size: 1em; }
+h4 { font-size: 1em; }
+h5, h6 { font-size: 1em; }
+p { }
+input, textarea { font-family: Georgia, "Times New Roman", Times, serif; font-size: 1.375em; }
+#iframe-form { margin: 40px auto 0; width: 500px; }
+#formComment label { float: left; display: block; width: 150px; color: #444; margin-right: 15px; text-align: right; padding-top: 8px;}
+#formComment input, #formComment textarea { float: left; display: block; width: 300px; color: #444; margin-bottom: 20px; border: 1px solid #ccc; padding: 7px 7px 5px; font-size: 1em; font-family: Georgia, "Times New Roman", Times, serif; line-height: 1.2em; }
+#formComment .styled-select { width:200px; height:33px; overflow:hidden; background:url(../images-2013/submit/select-arrow.jpg) no-repeat right #fff; border: 1px solid #ccc; margin-bottom: 2px; }
+#formComment .styled-select select { background: transparent; width: 228px; overflow: hidden; padding: 7px 5px 3px; font-size: 1em; height: 34px; color: #444; border: none; -webkit-appearance: none; font-family: Georgia, "Times New Roman", Times, serif; }
+#formComment p { padding: 0 0 10px 320px;}
+#formComment .submitButton { background: #7c4e95; border: 1px solid #7c4e95; border-radius: 0; font-size: 1em; color: #fff; width: 180px; cursor: pointer; margin-top: 30px; padding: 15px 0; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; -o-transition: all 0.3s ease; transition: all 0.3s ease;}
+#formComment .submitButton:hover { background: #333; border: 1px solid #333; }
+#formComment .quiz-label { float: left; width: 362px; font-size: 1em; text-align: right; margin-right: 15px; }
+#formComment .quiz-input { float: left; width: 87px; margin: 0 0 5px 0;}
+#formComment br { clear: both; }
+p.warning { font-size: 1.5em; line-height: 1.25em; color: #7c4e95; }
+p.formNotice { color: #999; }

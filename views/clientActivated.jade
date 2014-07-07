@@ -1,0 +1,110 @@
+extends layout
+block content
+  span(style='display:none;')#countnum=countnum
+  script.
+      $(function() {
+   
+      var getnum =  document.getElementById('countnum').innerHTML;
+        console.log(getnum);
+
+        var d = new Date();
+        var h =d.getHours();
+        var n = d.getMinutes();
+        var s =d.getSeconds();
+        var totalminutes;
+        var totalseconds;
+        var myhour;
+      
+        myhour=getnum/60;
+        console.log('Minute Total:'+myhour);
+        totalminutes = n+myhour;
+
+
+        d.setHours(h,totalminutes, s);
+           //var endDate = "Fri May 09, 2014 09:30:25";
+         var endDate = d.toString();
+        $('.countdown.simple').countdown({ date: endDate });
+        $('.countdown.styled').countdown({
+          date: endDate,
+          render: function(data) {
+            $(this.el).html("<div>" + this.leadingZeros(data.min, 2) + " </div><div>" + this.leadingZeros(data.sec, 2) + "</div>");
+          }
+        });
+
+        $('.countdown.callback').countdown({
+          date: +(new Date) + 10000,
+          render: function(data) {
+            $(this.el).text(this.leadingZeros(data.sec, 2) + " sec");
+          },
+          onEnd: function() {
+            $(this.el).addClass('ended');
+          }
+        }).on("click", function() {
+          $(this).removeClass('ended').data('countdown').update(+(new Date) + 10000).start();
+        });
+
+      });
+    div.menu
+        ul
+          li
+              a(href="/home") 
+                  img(src="http://localhost:8080/images/HomePage/home_0042_accueil.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0039_presentation.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0029_utilisateur.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0026_Pro.png")
+
+    div.client_content      
+      .client_content-leftright  
+        div.client_content-countdowntimer
+            p(style='text-align:center;font-weight:bold') Défi en cours  
+            div(style='margin-top:50px;text-align:center;font-size:20px;')
+              p Affichage de la Question
+            
+            div(style='margin-top:40px;text-align:center;font-size:35px;font-weight:bold;')
+            div(style='text-alignt:center;')
+              form(action="/uploadFIle" method="post" enctype="multipart/form-data", style="text-align:center;")
+               input(type="file" name="file")
+               br
+               input(type='submit' value='« Bouton Envoyé »', style="border:none;background:none;")
+
+            div(style='text-align:center;width:296px;margin-left:260px;margin-top:50px;height:136px;border:1px solid black;')
+              p(style='font-size:20px;color:red;') Le gagnant du 1er cadeau sera visible dans :
+              div(style='text-align:center;' onload="startTime()")
+              p 
+               |« Compte à rebour de
+               span.countdown.styled
+               |&nbsp;minutes »
+            div(style='margin-top:40px;text-align:center;font-size:18px;')
+              p Publicité Client qui paye ce challenge
+    
+      .client_content-giftleftright
+        div.client_content-giftleft
+          div(style='text-align:center;')
+            p CADEAU OFFERT POUR CE CHALLENGE 
+              br
+              |1er CADEAU :
+          div(style='text-align:center;')
+         
+             img(src="http://localhost:8080/images/HomePage/"+gift1) 
+        div.client_content-giftright
+          div(style='text-align:center;')
+            p CADEAU OFFERT POUR CE 
+             br
+             |CHALLENGE 
+             br
+             |2ème CADEAU :
+          div(style='text-align:center;')
+         
+             img(src="http://localhost:8080/images/HomePage/"+gift2) 
+      .gagnat
+        - data={name:["Il y a 1 heure Christophe a Gagné1 chèque de 400€ !","Il y a 2 heure Nadine A Gagné1 Ipad3!","Il y a 4 heureFirulo a Gagné1 Scooter !","Il y a 1 jour Cyril a Gagné1 voyage de 400€ !"]}
+  
+        - each d in data.name
+          div(style='border:1px solid black;border: 1px solid black;width: 200px;height: 100px;margin-top: 16px;margin-left: 10px;display:inline-block;')
+            div=d

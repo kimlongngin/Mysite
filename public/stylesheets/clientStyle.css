@@ -1,0 +1,112 @@
+.client_content
+{
+	position:relative;
+	display:table;
+	z-index: 1000;
+	border-top: 1px solid black;
+	margin-top: 288px;
+	margin-left: 3px;
+	min-height: 400px;
+	height: auto;
+	width: 99%;
+}
+
+.client_content-left
+{
+	position:relative;
+	display:table;
+	z-index: 1000;
+	border: 0px solid gray;
+	margin-top: 0px;
+	margin-left: 0px;
+	float: left;
+	width: 70%;
+}
+.client_content-countdowntimer
+{
+	margin-top: 30px;
+	position:relative;
+	display:block;
+	z-index: 1000;
+	border: 0px solid gray;
+	margin-top: 0px;
+	margin-left: 0px;
+	width: 100%;
+	margin-bottom: 60px;
+}
+.styled{
+	text-align: center !important;
+}
+
+
+.client_content-right
+{
+	position:relative;
+	display:table;
+	z-index: 1000;
+	border-left: 1px solid black;
+	margin-top: 0px;
+	margin-left: 0px;
+	float: right;
+	width: 29%;
+}
+
+.client_content-leftright
+{
+	position:relative;
+	display:table;
+	z-index: 1000;
+	border-bottom: 1px solid black;
+	margin-left: 0px;
+	min-height: 400px;
+	height: auto;
+	width: 100%;
+}
+
+
+.client_content-giftleftright
+{
+	position:relative;
+	display:table;
+	z-index: 1000;
+	border-bottom: 1px solid black;
+	margin-left: 0px;
+	height: auto;
+	width: 100%;
+}
+
+.client_content-giftleft
+{
+	position:relative;
+	display:table;
+	z-index: 1000;
+	border: 0px solid gray;
+	margin-top: 0px;
+	margin-left: 0px;
+	float: left;
+	width: 70%;
+}
+
+.client_content-giftright
+{
+	position:relative;
+	display:table;
+	z-index: 1000;
+	border-left: 1px solid black;
+	margin-top: 0px;
+	margin-left: 0px;
+	float: right;
+	width: 29%;
+}
+
+.gagnat{
+	position:relative;
+	display:table;
+	z-index: 1000;
+	border-left: 0px solid black;
+	margin-top: 0px;
+	margin-left: 0px;
+	height: 200px;
+	float: right;
+	width: 100%;
+}

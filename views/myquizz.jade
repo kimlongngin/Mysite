@@ -1,0 +1,64 @@
+extends layout
+  
+block content
+
+    div.menu
+        ul
+          li
+              a(href="/home") 
+                  img(src="http://localhost:8080/images/HomePage/home_0042_accueil.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0039_presentation.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0029_utilisateur.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0026_Pro.png")
+
+    div.memberContent
+      div(class="navbar navbar-default" role="navigation").memberMenu
+        include _myquizzmenu
+      div(style="position:relative;width:100%;height:auto;border:0px solid gray;text-align:center;margin-bottom:20px;")    
+        
+        
+          
+          - if (doc.length != 0){
+          
+            form(role="form" style="width:100%;margin-bottom:20px;" method="post" action="/myquizz")
+              table(style="width:100%;")
+                tr
+                  th(style="width:5%;text-align:left;")
+
+                  th(style="width:20%;text-align:left;")
+                    label Quizz
+                  th(style="width:40%;text-align:left;") 
+                    label Title
+                  - var i=0;
+                  - each doc1 in doc
+                    - i=i+1;
+                    tr.active
+                        th
+                          .checkbox
+                            label
+                              input(type='checkbox' name="chkcheck" value=doc1.quizzid)
+                        th
+                           label=i
+                        th
+                          label=doc1.quizztitle
+          
+                  
+              hr
+              input(type="submit" value="EDIT" class="btn btn-default" name="btnedit")
+              input(type="submit" value="DELETE" class="btn btn-default" name="btndelete")
+
+            div(style="position:relative;display:inline;text-align:center;text-align:center;")
+              a(href="/newquizz" class="btn btn-default") Create a new advertise
+
+          - }
+          - else {  
+
+            div(style="position:relative;display:inline;text-align:center;text-align:center;")
+              a(href="/newquizz" class="btn btn-default") Create a new Quizz
+          - }    

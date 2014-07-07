@@ -1,0 +1,49 @@
+html
+  head
+    link(rel='stylesheet', href='stylesheets/timesheets.css')
+  body
+    #iframe-form
+      #content
+        form#formComment(action='/viewer-review.php?id=24904', method='post', name='formComment')
+          label(for='com_name') Your Name
+          input#com_name(type='text', maxlength='50', name='com_name')
+          br
+          label(for='com_email') Your Email
+          input#com_email(type='text', maxlength='100', name='com_email')
+          br
+          label(for='com_url') Your Website URL
+          input#com_url(type='text', value='http://', maxlength='100', name='com_url')
+          br
+          label(for='com_rating') Rating (0 - 5)
+          .styled-select
+            select#com_rating(name='com_rating')
+              option(value='') Please select
+              option(value='0') 0 star
+              option(value='1') 0.5 star
+              option(value='2') 1 star
+              option(value='3') 1.5 stars
+              option(value='4') 2 stars
+              option(value='5') 2.5 stars
+              option(value='6') 3 stars
+              option(value='7') 3.5 stars
+              option(value='8') 4 stars
+              option(value='9') 4.5 stars
+              option(value='10') 5 stars
+          br
+          label(for='com_comment')
+            | Your Review
+            span#charlimitinfo 0/255
+          textarea#com_comment.largeInput(onkeyup='limitChars(this, 255, "charlimitinfo")', rows='3', cols='40', name='com_comment')
+          br
+          p.formNotice Anti Spam Verification
+          label.quiz-label(for='question_one') What is the 4th letter in GOOGLE?
+          input#question_one.quiz-input(type='text', maxlength='20', name='question_one')
+          br
+          label.quiz-label(for='question_two') How much is 100 + 100?
+          input#question_two.quiz-input(type='text', maxlength='20', name='question_two')
+          br
+          label
+          input.submitButton(type='submit', value='post review', name='submit')
+          input.hidden(type='hidden', value='50', name='quiz_one')
+          input.hidden(type='hidden', value='37', name='quiz_two')
+      // end content

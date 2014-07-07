@@ -1,0 +1,75 @@
+extends layout
+  
+block content
+
+    div.menu
+        ul
+          li
+              a(href="/home") 
+                  img(src="http://localhost:8080/images/HomePage/home_0042_accueil.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0039_presentation.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0029_utilisateur.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0026_Pro.png")
+
+    div.memberContent
+      div(class="navbar navbar-default" role="navigation").memberMenu
+        include _memberMenuAdvertise
+      div(style="position:relative;width:100%;height:auto;border:0px solid gray;text-align:center;margin-bottom:20px;")    
+        
+        - each doc1 in doc
+        
+          - if (doc1.pubtype.length != 0){
+            
+              form(role="form" style="width:100%;margin-bottom:20px;" action="/memberAdvertise" method="post")
+                table(style="width:100%;")
+                  tr
+                    th(style="width:5%;text-align:left;")
+
+                    th(style="width:20%;text-align:left;")
+                      label Publicit'e
+                    th(style="width:40%;text-align:left;") 
+                      label Title
+                    th
+                      label URL
+                    
+                    //th
+                      //leble=doc1.pubtype[0].mypub.content.length
+                  -for (var i=0;i<doc1.pubtype.length;i++){ 
+                    tr
+                      
+                      th
+                        .checkbox
+                          label
+                            input(type='checkbox' name="chkcheck" value=doc1.pubtype[i].pubid)
+                      th
+                         label=i+1
+                      th
+                         label=doc1.pubtype[i].photoname
+                      th
+                         label=doc1.pubtype[i].description
+
+                      // th
+                      //  -for (var j=0;j<doc1.pubtype[0].content.length;j++){                   
+                      //    label=doc1.pubtype[i].content[0]
+                      //  - }
+                  - }
+
+                hr 
+                input(type="submit" value="EDIT" class="btn btn-default" name="btnedit")
+                input(type="submit" value="DELETE" class="btn btn-default" name="btndelete")
+                
+
+              div(style="position:relative;display:inline;text-align:center;text-align:center;")
+                a(href="/memberspace" class="btn btn-default") Create a new advertise
+          -}
+          - else{  
+
+            div(style="position:relative;display:inline;text-align:center;text-align:center;")
+              a(href="/memberspace" class="btn btn-default") Create a new advertise
+          -}    
