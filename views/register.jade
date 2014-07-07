@@ -17,8 +17,8 @@ block content
 
  div.register_form
   
-        form(name="frmregister", class="frmrigister" method='post')
-            table
+        form.form-horizontal(role="form" name="frmregister", class="frmrigister" method='post')
+            table(style="width:100%;")
                 tr
                     td
                         h3.formtitle S'enregistrer    
@@ -28,12 +28,12 @@ block content
                         p Nom Société * :
                      
                     td
-                        input(type='text', name='txtname_orgine' required)
+                        input.form-control(type='text', name='txtname_orgine' required)
                  tr
                     td
                         p Noméro Siren * : 
                     td
-                        input(type='text', name='txtst' required)
+                        input.form-control(type='text', name='txtst' required)
                  tr
                     td
                        p Titre* : 
@@ -46,28 +46,28 @@ block content
                     td
                        p Prénom* : 
                     td
-                        input(type='text', name='txtfamily_name' required)
+                        input.form-control(type='text', name='txtfamily_name' required)
                 tr
                     td
                         p Nom* :
                     td
-                        input(type='text', name='txtlastname' required)
+                        input.form-control(type='text', name='txtlastname' required)
                 tr
                     td
                         p Numéro de rue / Adresse* : 
                     td
-                        input(type='text', name='txtaddress' required)
+                        input.form-control(type='text', name='txtaddress' required)
                 
                 tr
                     td
                         p C.P *:
                     td
-                        input(type='text', name='txtcp' required)
+                        input.form-control(type='text', name='txtcp' required)
                 tr
                     td
                         p Ville *:
                     td
-                        input(type='text', name='txtcity' required)
+                        input.form-control(type='text', name='txtcity' required)
 
                 tr
                     td
@@ -82,27 +82,27 @@ block content
                     td
                         p E-mail * : 
                     td
-                        input(type='email', name='txtemail' required)
+                        input.form-control(type='email', name='txtemail' required)
                 tr
                     td
                         p Confirmation E-mail * :
                     td
-                        input(type='email', name='txtcon_email' required)
+                        input.form-control(type='email', name='txtcon_email' required)
                 tr
                     td
                         p Téléphone * :
                     td
-                        input(type='text', name='txttel' required)
+                        input.form-control(type='text', name='txttel' required)
                 tr
                     td
                         p Mot de passe * :
                     td
-                        input(type='password', name='txtpwd' required)
+                        input.form-control(type='password', name='txtpwd' required)
                 tr
                     td
                         p Confirmer not de passe * :
                     td
-                        input(type='password', name='txt_con_pwd' required)
+                        input.form-control(type='password', name='txt_con_pwd' required)
                 tr
                     td
                        

@@ -33,6 +33,37 @@ li {
       box-shadow: 2px 2px 5px 1px rgba(100, 100, 100, 0.5);
       border-radius: 5px;
 }
+
+.titlehomepage_index
+ {
+      position: absolute;
+      z-index: 1000;
+      width: 93%;
+      height: 68px;
+      border: 0px solid gray;
+      margin-top: 292px;
+      margin-left: 30px;
+      box-shadow: 2px 2px 5px 1px rgba(100, 100, 100, 0.5);
+      border-radius: 5px;
+}
+.titlehomepage_part1
+ {
+   
+      border: 0px solid #808080;
+      border-radius: 5px;
+      box-shadow: 2px 2px 5px 1px rgba(100, 100, 100, 0.5);
+      display: inline-block;
+      height: 68px;
+      margin-bottom: 15px;
+      margin-left: 30px;
+      margin-top: 30px;
+      position: relative;
+      width: 48%;
+      z-index: 1000;
+      margin-top: 295px;
+}
+
+
 .giftpic {
     margin-top: -28px;
 }
@@ -61,29 +92,99 @@ li {
       box-shadow: 2px 2px 5px 1px rgba(100, 100, 100, 0.5);
       border-radius: 5px;
 }
+
+.chellengizhomepage_index
+ {
+      position: relative;
+      display: inline-block;
+      z-index: 1000;
+      width: 48.3%;
+      min-height: 235px;
+      height: auto;
+      border: 0px solid gray;
+      margin-top:376px;
+      margin-bottom: 20px;
+      margin-left: 30px;
+      box-shadow: 2px 2px 5px 1px rgba(100, 100, 100, 0.5);
+      border-radius: 5px;
+}
+.chellengizhomepage_index_second
+ {
+      position: relative;
+      display: inline-block;
+      z-index: 1000;
+      width: 94%;
+      min-height: 235px;
+      height: auto;
+      border: 0px solid gray;
+      margin-top:376px;
+      margin-bottom: 20px;
+      margin-left: 30px;
+      box-shadow: 2px 2px 5px 1px rgba(100, 100, 100, 0.5);
+      border-radius: 5px;
+}
+
+.ganger_index
+{
+  position: relative;
+  display: inline-block;
+  z-index: 1000;
+  width: 93%;
+  min-height: 250px;
+  height: auto;
+  border: 0px solid gray;
+  margin-top:0px;
+  margin-bottom: 15px;
+  margin-left: 30px;
+  box-shadow: 2px 2px 5px 1px rgba(100, 100, 100, 0.5);
+  border-radius: 5px;
+}
+.ganger_index_second
+{
+  position: relative;
+  display: inline-block;
+  z-index: 1000;
+  width: 94%;
+  min-height: 250px;
+  height: auto;
+  border: 0px solid gray;
+  margin-top:0px;
+  margin-bottom: 15px;
+  margin-left: 30px;
+  box-shadow: 2px 2px 5px 1px rgba(100, 100, 100, 0.5);
+  border-radius: 5px;
+}
+
+
+
+
+
 .chellengizhomepage-left {
-    width: 48%;
+    width: 40%;
     float: left;
     height: auto;
-     border: 0px solid gray;
+    border: 0px solid gray;
 }
 .chellengizhomepage-right {
-    width: 48%;
+    width: 59%;
     height: auto;
     float: right;
     border: 0px solid gray;
 }
 .chellengizhomepage-left-a {
-    width: 20%;
     border:0px solid green;
     float: left;
+    margin-left: 20px;
 }
 .chellengizhomepage-left-content {
-    width: 70%;
+    position: relative;
+    display: inline;
     border: 0px solid green;
     height: auto;
-    float: right;
-    margin-bottom: 6px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    text-align: right;
+    margin-top:15px;
 }
 
 
@@ -118,21 +219,74 @@ li {
      
 }
 
+.winnergagnant
+ {
+    border: 0 solid #808080;
+    display: table;
+    height: auto;
+    margin-left: 20px;
+    margin-top: 170px;
+    min-height: 235px;
+    position: relative;
+    z-index: 1000;
+    float: left;
+    font-color:red;
+     
+}
+.prochaindefi_index
+{
+  
+    position: relative;
+    display: table;
+    z-index: 1000;
+    width: 94%;
+    min-height: 235px;
+    height: auto;
+    border: 0px solid gray;
+    margin-bottom: 30px;
+    margin-left: 30px;
+}
+
+
+.prochaindefi_index_second
+ {
+    position: relative;
+    display: table;
+    z-index: 1000;
+    width: 94%;
+    min-height: 235px;
+    height: auto;
+    border: 0px solid gray;
+    margin-bottom: 30px;
+    margin-left: 30px;
+     
+}
+.prochaindefi_index_home
+ {
+    position: relative;
+    display: inline-block;
+    z-index: 1000;
+    width:48%;
+    min-height: 170px;
+    height: auto;
+    border: 0px solid gray;
+    margin-bottom: 0px;
+    margin-left: 30px;
+     
+}
 
 .prochaindefi-left
  {
       position: relative;
-      display: table;
       z-index: 1000;
       width: 313px;
-      min-height: 450px;
+      min-height: 150px;
       height: auto;
       border: 0px solid gray;
       box-shadow: 2px 2px 5px 1px rgba(100, 100, 100, 0.5);
       border-radius: 5px;
       float: left;
       background-size: 104%;
-      background-repeat: no-repeat;
       background-color: #ffffff;
 }
 
@@ -141,7 +295,7 @@ li {
       position: relative;
       z-index: 1000;
       width: 315px;
-      min-height: 450px;
+      min-height: 412px;
       height: auto;
       border: 0px solid gray;
       box-shadow: 2px 2px 5px 1px rgba(100, 100, 100, 0.5);
@@ -150,6 +304,103 @@ li {
       background-color: #ffffff;
       
 }
+
+
+.prochaindefi-left_index
+ {
+      position: relative;
+      z-index: 1000;
+      width: 100%;
+      min-height: 150px;
+      height: auto;
+      border: 0px solid gray;
+      box-shadow: 2px 2px 5px 1px rgba(100, 100, 100, 0.5);
+      border-radius: 5px;
+      float: left;
+      background-size: 104%;
+      background-color: #ffffff;
+}
+.prochaindefi-left_index_second
+ {
+    background-color: #FFFFFF;
+    background-size: 104% auto;
+    border: 0 solid #808080;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px 1px rgba(100, 100, 100, 0.5);
+    float: left;
+    height: auto;
+    min-height: 150px;
+    position: relative;
+    width: 49%;
+    z-index: 1000;
+}
+.prochaindefi-right_index_second
+ {
+    background-color: #FFFFFF;
+    border: 0 solid #808080;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px 1px rgba(100, 100, 100, 0.5);
+    float: right;
+    height: auto;
+   
+    min-height: 151px;
+    position: relative;
+    width:50%;
+    z-index: 1000;
+
+      
+}
+
+
+.prochaindefi-left_home
+ {
+      position: relative;
+      z-index: 1000;
+      width: 370px;
+      min-height: 150px;
+      height: auto;
+      border: 0px solid gray;
+      box-shadow: 2px 2px 5px 1px rgba(100, 100, 100, 0.5);
+      border-radius: 5px;
+      float: left;
+      background-size: 104%;
+      background-color: #ffffff;
+}
+
+.prochaindefi-right_index
+ {
+      background-color: #FFFFFF;
+      border: 0 solid #808080;
+      border-radius: 5px;
+      box-shadow: 2px 2px 5px 1px rgba(100, 100, 100, 0.5);
+
+      float: right;
+      height: auto;
+      margin-right: 30px;
+      margin-top: -87px;
+      min-height: 239px;
+      position: relative;
+      width: 370px;
+      z-index: 1000;
+
+      
+}
+.prochaindefi-right_home
+ {
+      position: relative;
+      z-index: 1000;
+      width: 370px;
+      min-height: 150px;
+      height: auto;
+      border: 0px solid gray;
+      box-shadow: 2px 2px 5px 1px rgba(100, 100, 100, 0.5);
+      border-radius: 5px;
+      float: right;
+      background-color: #ffffff;
+      
+}
+
+
 
 
 .bientot {
@@ -242,3 +493,4 @@ li {
     width: 229px;
     height: 29px;
 }
+

@@ -1,12 +1,12 @@
 extends layout
+  
 block content
-  span(style='display:none;')#countnum=countNum
+
+  span(style='display:none;')#countnum=countnum
   script.
       $(function() {
-   
-      var getnum =  document.getElementById('countnum').innerHTML;
+        var getnum =  document.getElementById('countnum').innerHTML;
         console.log(getnum);
-
         var d = new Date();
         var h =d.getHours();
         var n = d.getMinutes();
@@ -14,13 +14,19 @@ block content
         var totalminutes;
         var totalseconds;
         var myhour;
-      
+        var divsec;
         myhour=getnum/60;
+
         console.log('Minute Total:'+myhour);
+        totalseconds=getnum%60+s;
         totalminutes = n+myhour;
 
+        if(totalseconds>60)
+        {
+          totalseconds=60;
+        }
+        d.setHours(h,totalminutes,totalseconds);
 
-        d.setHours(h,totalminutes, s);
            //var endDate = "Fri May 09, 2014 09:30:25";
          var endDate = d.toString();
         $('.countdown.simple').countdown({ date: endDate });
@@ -44,6 +50,7 @@ block content
         });
 
       });
+
     div.menu
         ul
           li
@@ -61,6 +68,7 @@ block content
 
                   
     div.titlehomepage
+
         div.giftpic
             img(src="http://localhost:8080/images/HomePage/home_0034_cadeau.png")
         div.chellengizpic
@@ -84,6 +92,13 @@ block content
                 p blablablablablablablablablabla
         div.bientot
             .hour_bientot
+
+
+    div.winnergagnant
+      p(style="color:red;font-size:16px;font-weight:bold;")  Derniers
+      p(style="color:red;font-size:16px;font-weight:bold;")  gagnants:
+      p(style="display:inline;") BI-KAY
+
     div.prochaindefi
         .prochaindefi-left
             div.proc_pic_head
@@ -99,29 +114,17 @@ block content
                .ganger_one_left
                     img(src="http://localhost:8080/images/HomePage/home_0012_1_defi.png" )
                .ganger_one_right
-                  img(src="http://localhost:8080/images/HomePage/home_0022_photo_ex1.png" width="130px")
+                  img(src="http://localhost:8080/images/HomePage/"+gift1 width="130px")
 
 
             div.gagner_two
                .ganger_two_left
                       img(src="http://localhost:8080/images/HomePage/home_0013_2_defi.png")
                .ganger_two_right
-                      img(src="http://localhost:8080/images/HomePage/home_0021_photo_ex2.png" width="130px")
-        .prochaindefi-right
-            
+                      img(src="http://localhost:8080/images/HomePage/"+gift2 width="130px")
+        div(style="text-align:center;").prochaindefi-right
+              img(src="http://localhost:8080/images/HomePage/home_0053_PUB.png" style="margin-top:190px;") 
 
 block append footer
         div.main_footer
-            table(style="width:100%; color:white;")
-                tr
-                    td 
-                        p blablablablablablablabla 
-                    
-                    td 
-                        p blablablablablablablabla
-              
-                    td 
-                        p blablablablablablablabla
-               
-                    td 
-                        p blablablablablablablabla
+           

@@ -158,7 +158,7 @@ form.frmlogin input[type="email"] {
 .prochain_defi_content-top-defi-left
 {
     position: relative;
-    display: table;
+    /*display: table;*/
     min-height: 500px;
     height: auto;
     width: 70%;

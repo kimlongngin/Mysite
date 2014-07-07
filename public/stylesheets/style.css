@@ -16,7 +16,7 @@ body {
     width: 1315px;
     height: 273px;
     margin-top: -15px;
-    margin-left: -36px;
+    margin-left: 0px;
     background-image: url("http://localhost:8080/images/HomePage/home_0052_banner.png");
     background-repeat: no-repeat;
     background-position: center;
@@ -44,7 +44,7 @@ display: table;
     height: auto;
     border: 0px solid green;
     position: relative;
-    display: inline;
+    
     overflow: hidden
 }
 .content {
@@ -55,7 +55,7 @@ display: table;
     display: table;
     border-left: 3px solid #f29400;
     border-right:3px solid #f29400;
-    margin-left: 194px;
+    margin-left: 17%;
   
     
     background-image: url("http://localhost:8080/images/HomePage/home_0005_bord.png");
@@ -99,9 +99,14 @@ display: table;
     position: relative;
     display: table;
     margin-top:280px;
-    width: 100%;
-    height: 900px;
-    padding-bottom: 370px;
+    width: 90%;
+    height: 600px;
+    padding-bottom: 10px;
+    border:1px solid #f1f1f1;
+    margin-left: 45px;
+    background-color: #f1f5f1;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .frmrigister {

@@ -1,8 +1,8 @@
 
 form(name='frmlogin', method='post', action='/login')
-    input(type="text", name='txtusername' placeholder="E-mail" class='login_name')
+    input(type="text", name='txtusername' placeholder="E-mail" class='login_name' required)
     br
-    input(type="text", name='txtpwd' placeholder="Mod de passe" class='login_pwd')
+    input(type="password", name='txtpwd' placeholder="Mod de passe" class='login_pwd' required)
     br
     a(href="prochaindefiHome")="Mod de passe oublié"
     br
