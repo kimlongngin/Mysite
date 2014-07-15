@@ -15,7 +15,7 @@ var urlencode = require('urlencode');
 var _underscore=require('underscore');
 var bodyParser     = require('body-parser');
 var ObjectId = require('mongodb').ObjectID;
-
+var io = require('socket.io')(http);
 var builder = require('mongo-sql');
 
 app.use(bodyParser());
@@ -32,8 +32,7 @@ result.toString() // Sql string value
 console.log(result);
 
 
-exports.memberHome = function(req, res, key){
-	
+exports.memberHome = function(req, res, key){	
 	var myid;
 	var id;
 	var cookies= new Cookies(req, res, key);
@@ -51,6 +50,9 @@ exports.memberHome = function(req, res, key){
 		})
 	}	
 }
+
+
+
 
 function PubClient(myid) {
 
@@ -72,15 +74,29 @@ exports.memberAdvertise=function(req,res, key)
 	myid=urlencode.decode(cookies.get('IDLogin'));
 	id=myid.slice(3,27);
 
-	if(id=="" || id==0){
-		console.log("Please login!");                                                            
+	if(id=="" || id==0 || id==null || id.length<24){
+		console.log("Please login!");  
+		res.sendfile('ViewErrorPage.jade');                                                        
 	}else{
+
 		con.coll.find({_id:ObjectId(id)}).toArray(function(err, clientDocs) {
 			console.log(clientDocs);		
 			res.render('memberAdvertise', {title:"Member Advertise",doc:clientDocs});
 		})
+
 	}
 }
+
+
+
+/*++++++++++++++++++++Test a socket.io web socket +++++++++++++++++++*/
+exports.ViewErrorPage=function(req,res)
+{
+	res.render('ViewErrorPage',{title:"Web Socket"});
+}
+
+
+
 
 /*if(clientDocs.length<=0)
 {
@@ -420,6 +436,7 @@ exports.AddnewQuizz=function(req,res,key)
 			
 			for(var i=0;i<content.txtq.length;i++)
 		    {
+		    	
 		    	var ObjectIdanswer=new ObjectId();
 		    	console.log("ObjectId Answers:"+ObjectIdanswer);
 				con.coll.update({_id:ObjectId(id)},{$push:{"quizz":{

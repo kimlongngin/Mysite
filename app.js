@@ -31,12 +31,15 @@ var routes = require('./routes/index');
 var users = require('./routes/user');
 var memberRoutes=require('./routes/member');
 var challengRoutes=require('./routes/challenge');
-var http = require('http');
+var calendarRoutes=require('./routes/calendar');
+var http = require('http').Server(app);
 var fs=require('fs');
-var sio = require('socket.io');
 var reload = require('reload');
-app.listen(8080);
-var server = http.createServer(app);
+var io = require('socket.io')(http);
+
+
+
+/*var server = http.createServer(app);*/
 
 
 
@@ -107,6 +110,19 @@ app.post('/memberAdvertise',memberRoutes.memberAdvertiseDelUp);
 app.post('/memberspaceAdd', memberRoutes.memberspaceAdd);
 app.post('/myquizz',memberRoutes.myquizzDelUp);
 app.post('/newquizz', memberRoutes.AddnewQuizz);
+app.post('/challengPhoto', challengRoutes.ChallengePhotoPost);
+app.post('/challengeQuizz', challengRoutes.challengeQuizzPost);
+app.post('/challengeGoods',challengRoutes.challengeGoodsPost);
+
+app.get('/ViewErrorPage', memberRoutes.ViewErrorPage); // Create websocket using socket.io
+app.get('/calendar', challengRoutes.Calendar);// Add new calendar for challengiz
+app.post('/calendar', challengRoutes.CalendarPost);
+
+
+
+/*++++++++++++++++++++++ The calendar Rotes +++++++++++++++++++++++++++++++++*/
+app.get('/calendarPlan', calendarRoutes.calendarPlan);
+
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
@@ -127,8 +143,11 @@ if (app.get('env') === 'development') {
     });
 }
 
+
 // production error handler
 // no stacktraces leaked to user
+
+
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
@@ -138,24 +157,30 @@ app.use(function(err, req, res, next) {
 });
 
 
-
-
-var io = sio.listen(server);
-
-io.sockets.on('connection', function (socket) {
-    console.log("Wellcome!")
-    socket.on('user image', function (msg) {
-        //Received an image: broadcast to all
-        socket.broadcast.emit('user image', socket.nickname, msg);
-    });
-    socket.on('user message', function (msg) {/*See source code*/});
-    socket.on('nickname', function (msg) {/*See source code*/});
+http.listen(8080, function(){
+  console.log('listening on *:8080');
 });
 
-var countdown = 1000;
-setInterval(function() {
-  countdown--;
-  io.sockets.emit('timer', { countdown: countdown });
-}, 1000);
+/*io.on('connection', function(socket){
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+});*/
 
+io.on('connection', function(socket){
+    
+
+  socket.on('chat_message', function(msg){
+    console.log("a user connected");
+    console.log('message: ' + msg);
+  });
+  io.emit('some event', { for: 'everyone' });
+});
+
+/*io.on('connection', function(socket){
+  socket.broadcast.emit('hi');
+});*/
+
+
+/*app.listen(8080);*/
 module.exports = app;

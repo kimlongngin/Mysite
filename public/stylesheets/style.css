@@ -29,7 +29,7 @@ margin-top: -12px;border:none;}
 .footer {
 background-color: #a4141c;
 width: 100%;
-z-index: 1000;
+z-index: 1;
 height: 170px;
 position: absolute;
 display: table;

@@ -1,0 +1,138 @@
+
+// View : ChallengePhoto will happen while click on the challenge menu -> challenge by photo of member space 
+// controller: on challenge.js Routs on ChallengePhoto 
+// Method     : Client can create new challenge, by choose number of challenge with the field of cost, gift image, Calandar to challenge...etc.
+// Action     : We can save all content to database, cancel all challenge while we are creating, and we can pay the cost value
+ 
+extends layout
+  
+block content
+    script.
+        $(function() {
+          $('#datepicker').datepicker({dateFormat: 'yy-mm-dd', altField: '#dbDate', altFormat: 'yy-mm-dd'});
+          $( "#datepicker" ).datepicker();
+          $( "#format" ).change(function() {
+            $( "#datepicker" ).datepicker( "option", "dateFormat", $( this ).val() );
+          });
+       
+
+        });
+        //$(document).ready(function()
+        //{
+
+          //$("#dtBox").DateTimePicker();
+        //});
+
+          $(document).ready(function(){
+            //alert(0)
+            // find the input fields and apply the time select to them.
+            $('#sample2 input').ptTimeSelect({
+                onBeforeShow: function(i){
+                    $('#sample2-data')
+                        .append(
+                            'onBeforeShow(event) Input field: [' + 
+                            $(i).attr('name') + 
+                            "], value: [" +
+                            $(i).val() +
+                            "]<br>");
+                },
+                onClose: function(i) {
+                    $('#sample2-data')
+                        .append(
+                            'onClose(event)Time selected: ' + 
+                            $(i).val() + 
+                            "<br>");
+                }
+            }); //end ptTimeSelect()
+        }); // end ready()
+
+        
+    div.menu
+        ul
+          li
+              a(href="/home") 
+                  img(src="http://localhost:8080/images/HomePage/home_0042_accueil.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0039_presentation.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0029_utilisateur.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0026_Pro.png")
+
+    div.memberContent
+    
+      div(class="navbar navbar-default" role="navigation").memberMenu
+        include _challengizMenu
+
+      div(style="position:relative;width:100%;height:auto;border:1px solid gray;margin-left:0px;margin-bottom:20px;")  
+        div(style="width:100%;background-color:#428BCA;height:40px;padding-top:5px;border-bottom:0px solid black;") 
+          p(style="font-weight:bold;font-size:16px;margin-left:10px;color:white;") Calendar
+
+        div(style="width:100%;height:auto;padding-top:5px;border-bottom:0px solid black;" ) 
+         form(role="form" method="post")
+
+            div(class="bs-example" style="border:0px solid black;width:100%;height:90px;")
+              table(style="margin-top:20px;margin-left:20px;")
+                tr
+                  td 
+                    h3 Create New Calendar
+         
+
+            div(class="highlight" style="position:relative;display:inline-block;border:0px solid black;width:100%;height:auto;")
+
+                br
+                .row
+                  .col-xs-3
+                    label  Choose Date
+                  .col-xs-8
+                    input.form-control(type='text',id="datepicker",name="txtdate" placeholder="Enter Date" style="font-weight:bold;" data-beatpicker="true")
+                br
+                .row
+                  .col-xs-3
+                    label  Choose Week
+                  .col-xs-8
+                    select(name="optweek").form-control
+                      option Select Week
+                      option week 1
+                      option week 2
+                      option week 3
+                      option week 4
+                br
+                .row
+                  .col-xs-3
+                    label  Choose Time 
+                  .col-xs-8
+                    
+                    
+                    div#sample2.ui-widget-content(style='background-color:green !important;z-index:1000 !important;border:none !important;')
+                      input.form-control(type='text',name='s2Time2', placeholder="Enter Time" data-field="time" value="")
+                      
+                      
+                br
+                .row
+                  .col-xs-3
+                    label  Price 
+                  .col-xs-8
+                    input.form-control(type='text', placeholder='Enter Price' name="txtprice")
+
+         
+            .row
+              .col-xs-3
+                label  
+              .col-xs-5
+                input(type="submit" class="btn btn-default" value="cancel" name="btncancel")
+                input(type="submit" class="btn btn-default" value="Save" name="btnsave" style="margin-left:20px;")
+       
+          br      
+
+
+
+
+
+                    
+                    
+                      
+

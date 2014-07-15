@@ -1,0 +1,98 @@
+
+// View : ChallengeGoods will happen while click on the challenge menu -> challenge by photo of member space 
+// controller: on challenge.js Routs on ChallengeGoods
+// Method     : Client can create new challenge, by choose number of challenge with the field of cost, gift image, Calandar to challenge...etc, they can pay the by Paypal, blue card or Bank transfer
+// Action     : We can save all content to database, cancel all challenge while we are creating, and we can pay the cost value
+
+
+extends layout
+  
+block content
+  
+    div.menu
+        ul
+          li
+              a(href="/home") 
+                  img(src="http://localhost:8080/images/HomePage/home_0042_accueil.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0039_presentation.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0029_utilisateur.png")
+          li
+              a(href="#")
+                  img(src="http://localhost:8080/images/HomePage/home_0026_Pro.png")
+
+    div.memberContent
+
+      div(style="position:relative;width:100%;height:auto;border:1px solid gray;margin-left:0px;margin-bottom:20px;")  
+        div(style="width:100%;background-color:#428BCA;height:40px;padding-top:5px;border-bottom:0px solid black;") 
+          p(style="font-weight:bold;font-size:16px;margin-left:10px;color:white;") Calendar List
+
+        div(style="width:100%;height:auto;padding-top:5px;border-bottom:0px solid black;margin-bottom:20px;margin-left:10px;margin-top:30px;" ) 
+          
+          form.form-inline(role='form')
+            div.form-group
+              .input-group
+                div(style="font-weight:bold;").input-group-addon Year
+                select.form-control
+                  option select
+                  option 2014
+                  option 2013
+                  option 2012
+                  option 2011
+                  option 2010
+
+            div(style="margin-left:20px;").form-group
+              .input-group
+                div(style="font-weight:bold;").input-group-addon Month
+                select.form-control
+                  option Select
+                  option 1
+                  option 2
+                  option 3
+                  option 4
+                  option 5
+                  option 6
+                  option 7
+                  option 8
+                  option 9
+                  option 10
+                  option 11
+                  option 12
+
+            div(style="margin-left:20px;").form-group
+              .input-group
+                div(style="font-weight:bold;").input-group-addon Week
+                select.form-control
+                  option select
+                  option week 1
+                  option week 2
+                  option week 3
+                  option week 4
+                  
+       
+            div(style="margin-left:20px;").form-group      
+              button(type='submit' class="btn btn-primary") Select
+          
+        div()
+         
+          table(class="table table-bordered" style="text-align:center;")
+              thead
+                tr(class="danger" style="color:#563D7C;")
+                  th Hour
+                  - each cal in calendar
+                    th= cal.challenge_date.getDate()+"-"+cal.challenge_date.getMonth()
+                  
+              tbody
+                td
+                - each cal in calendar
+                 
+                    td=cal.challenge_time
+                tr
+                  td
+                  - each cal in calendar
+                    td=cal.price
+                     input(type='checkbox')
+                      

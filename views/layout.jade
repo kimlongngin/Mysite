@@ -18,6 +18,18 @@ html
     script(type='text/javascript' src='/javascripts/memberspace.js')
     script(type='text/javascript' src='javascripts/js/jquery.prettyPhoto.js')
 
+    script(type='text/javascript' src='javascripts/js/jquery.ui.core.js')
+    script(type='text/javascript' src='javascripts/js/jquery.ui.widget.js')
+    script(type='text/javascript' src='javascripts/js/jquery.ui.datepicker.js')
+    script(type='text/javascript' src='javascripts/DateTimePicker.js')
+   
+    script(type='text/javascript' src='javascripts/jquery.ptTimeSelect.js')
+
+
+    link(rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/redmond/jquery-ui.css")
+
+
+
     script(type='text/javascript' src='javascripts/animateHoverPulse.js')
     script(type='text/javascript' src='javascripts/jquery.hoverpulse.js')
   
@@ -34,10 +46,20 @@ html
     link(rel='stylesheet', href='/stylesheets/bootstrap.css')
     link(rel='stylesheet', href='/stylesheets/bootstrap.css.map')
     link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')  
-    link(rel='stylesheet', href='/stylesheets/challenge.css')  
-   
- 
+    link(rel='stylesheet', href='/stylesheets/challenge.css')
 
+    link(rel='stylesheet', href='/stylesheets/DateTimePicker.css')  
+    link(rel='stylesheet', href='/stylesheets/jquery.ptTimeSelect.css')
+    
+    link(rel='stylesheet', href='/stylesheets/jquery-ui-1.10.4.css')
+    link(rel='stylesheet', href='/stylesheets/jquery-ui-1.10.4.min.css')
+
+    style(type='text/css').
+        #ui-datepicker-div
+        {
+            z-index:1000 !important;
+        }
+       
   body!= body
       div.mainheader  
         block head  

@@ -25,133 +25,151 @@ block content
 
     div.memberContent
     
+
       div(class="navbar navbar-default" role="navigation").memberMenu
         include _challengizMenu
+
 
       div(style="position:relative;width:100%;height:auto;border:1px solid gray;margin-left:0px;margin-bottom:20px;")  
         div(style="width:100%;background-color:#428BCA;height:40px;padding-top:5px;border-bottom:0px solid black;") 
           p(style="font-weight:bold;font-size:16px;margin-left:10px;color:white;") Cr'eez des Challenges 
 
+
         div(style="width:100%;height:auto;padding-top:5px;border-bottom:0px solid black;" ) 
-         form(role="form" method="post")
+          form(method="post" role="form" action="/challengPhoto")
 
-            div(class="bs-example" style="border:0px solid black;width:100%;height:90px;")
-              table(style="margin-top:20px;margin-left:20px;")
-                tr
-                  td
-                    label Numbre de chhalenge souhait'e ?
-                  td 
-                    select.form-control(name="txtnumberchalleng" id="txtnumber" style="margin-left:10px;" onchange="sendReport(this.value)")
-                      option 
-                      option 1
-                      option 2
-                      option 3
-                      option 4
-                      option 5
-                      option 6
-                  
-          - n=number
+              div(class="bs-example" style="border:0px solid black;width:100%;height:90px;")
+                table(style="margin-top:20px;margin-left:20px;")
+                  tr
+                    td
+                      label Numbre de chhalenge souhait'e ?
+                    td 
+                      select.form-control(name="txtnumberchalleng" id="txtnumber" style="margin-left:10px;" onchange="sendReport(this.value)")
+                        option 
+                        option 1
+                        option 2
+                        option 3
+                        option 4
+                        option 5
+                        option 6
+                    td 
+                      a(href="/calendar" class="btn btn-default" style="margin-left:100px;") Calendar
 
-          - for (var i=0;i<n;i++){ 
+              - n=number
+              
+              - for (var i=0;i<n;i++){ 
 
-            div(class="highlight" style="position:relative;display:inline-block;border:0px solid black;width:100%;height:auto;")
+                div(class="highlight" style="position:relative;display:inline-block;border:0px solid black;width:100%;height:auto;")
 
-                .row
-                  .col-xs-3
-                    label  
-                  .col-xs-8
-                    label(style="font-size:20px;") 
-                     h2 Challenge
-                      span(style="font-size:25px;")=i+1
+                    .row
+                      .col-xs-3
+                        label  
+                      .col-xs-8
+                        label(style="font-size:20px;") 
+                         h2 Challenge
+                          span(style="font-size:25px;")=i+1
 
-                br
-                .row
-                  .col-xs-3
-                    label  Title
-                  .col-xs-8
-                    input.form-control(type='text', placeholder='Enter Title' name="txttitle")
+                    br
+                    .row
+                      .col-xs-3
+                        label  Title
+                      .col-xs-8
+                        input.form-control(type='text', placeholder='Enter Title' name="txttitle")
 
-                br    
-                .row
-                  .col-xs-3
-                    label  Question
-                  .col-xs-5
-                    input.form-control(type='text', placeholder='Enter Question' name="txtquestion")
-                  .col-xs-2
-                    input.form-control(type='text', placeholder='/  /' style="text-align:center;")
-                  .col-xs-1
-                    ul.gallery.clearfix(style="display:none;")
+                    br    
+                    .row
+                      .col-xs-3
+                        label  Question
+                      .col-xs-5
+                        input.form-control(type='text', placeholder='Enter Question' name="txtquestion")
+                      .col-xs-2
+                        input.form-control(type='text', name="txtvalidDate", placeholder='/  /' style="text-align:center;")
+                      .col-xs-1
+                        ul.gallery.clearfix(style="display:none;")
 
-                    ul.gallery.clearfix
-                      li
-                        a(href='http://localhost:8080/view&iframe=true&width=580&height=580', rel='prettyPhoto', title='') 
-                          img(src='http://localhost:8080/images/HomePage/Calendar.png', alt='Category', width='40')
-                br
-                .row
-                  .col-xs-3
-                    label  Gift1
-                  .col-xs-5
-                    select.form-control(name="optgift1")
-                      option(disabled selected="selected") Choose a gift
-                      - each doc in data
-                        option=doc.img                        
-                  .col-xs-3
-                    label or
+                        ul.gallery.clearfix
+                          li
+                           img(src='http://localhost:8080/images/HomePage/Calendar.png', alt='Category', width='40')
 
-                br
-                .row
-                  .col-xs-3
-                    label  
-                  .col-xs-5
-                    input.form-control(type='text', placeholder='Input your gift' name="txtgift1")
-                  .col-xs-2
-                    input.form-control(type='text', placeholder='value' style="margin-left:-25px;")
-                  .col-xs-2
-                    input#selectedFilen(type='file', style='display: none;' onchange="readURL(this,img1,image4name);" name="f4")
-                    img(id="img1" name="img1" src="http://localhost:8080/images/HomePage/NoPhoto.gif" class="img-circle" style=" height: 35px;margin-left: -49px;width: 35px;" value="Hi")  
-                    input(type='submit',onclick='CallFile("selectedFilen")', value='Browse' class="btn btn-default" name="btf4")
+                    br
+                    .row
+                      .col-xs-3
+                        label  Gift1
+                      .col-xs-5
+                        select.form-control(name="optgift1")
+                          option(disabled selected="selected") Choose a gift
+                          - each doc in data
+                            option(name=doc._id)=doc.description                        
+                      .col-xs-3
+                        label or
 
+                    br
+                    .row
+                      .col-xs-3
+                        label  
+                      .col-xs-5
+                        input.form-control(type='text', placeholder='Input your gift' name="txtgift1")
+                      .col-xs-2
+                        input.form-control(type='text', placeholder='value' style="margin-left:-25px;" name="txtvalue")
+                      .col-xs-2
 
-                br
-                .row
-                  .col-xs-3
-                    label  Gift2
-                  .col-xs-5
-                    select.form-control(name="optgift2")
-                      option(disabled selected="selected") Choose a gift
+                        input#selectedFile(type='file', style='display: none;' onchange="readURL(this,img1,image4name);" name="f4")
 
-                      - each doc in data
-                        option=doc.img
+                        img(id="img1" name="img1" src="http://localhost:8080/images/HomePage/NoPhoto.gif" class="img-circle" style=" height: 35px;margin-left: -49px;width: 35px;" value="Hi")  
+
+                        input(type='submit',onclick='CallFile("selectedFile")', value='Browse' class="btn btn-default" name="btf4")
 
 
+                    br
+                    .row
+                      .col-xs-3
+                        label  Gift2
+                      .col-xs-5
+                        select.form-control(name="optgift2")
+                          option(disabled selected="selected") Choose a gift
 
-                br
-                .row
-                  .col-xs-3
-                    label  Advertisement
-                  .col-xs-5
-                    select.form-control(name="optphotsociety")
-                      option(disabled selected="selected") Photo societe
-                      - each doc in data
-                        option=doc.img
+                          - each doc in data
+                            option(name=doc._id)=doc.description
 
 
-                br
-                .row
-                  .col-xs-3
-                    label  
-                  .col-xs-5
-                    label Prix total du challenge: 150 eurose
 
-          - }    
-          .row
-            .col-xs-3
-              label  
-            .col-xs-5
-              input(type="submit" class="btn btn-default" value="cancel" name="btncancel")
-              input(type="submit" class="btn btn-default" value="Save" name="btnsave" style="margin-left:20px;")
-              input(type="submit" class="btn btn-default" value="Pay" name="btnpay" style="margin-left:20px;")
-          br      
+                    br
+                    .row
+                      .col-xs-3
+                        label  Advertisement
+                      .col-xs-5
+                        select.form-control(name="optphotsociety")
+                          option(disabled selected="selected") Photo societe
+                          - each doc in data
+                            option(name=doc._id)=doc.description
+
+
+                    br
+                    .row
+                      .col-xs-3
+                        label  Description
+                      .col-xs-5
+                        textarea.form-control(rows="4" cols="50" name="txtdescrption")
+
+
+                    br
+                    .row
+                      .col-xs-3
+                        label  
+                      .col-xs-5
+                        label Prix total du challenge: 150 eurose
+              - }   
+
+              br 
+              .row
+                .col-xs-3
+                  label  
+                .col-xs-5
+                  input(type="submit" class="btn btn-default" value="Cancel" name="btncancel")
+                  input(type="submit" class="btn btn-default" value="Save" name="btnsave" style="margin-left:20px;")
+                  input(type="submit" class="btn btn-default" value="Pay" name="btnpay" style="margin-left:20px;")
+              br   
+
 
 
 

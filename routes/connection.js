@@ -10,7 +10,9 @@ var coll;
 var sas_origin_coll;
 var giftcoll;
 var pub;
-
+var calendarcoll;
+var gift_descoll;
+var challengecoll;
 // Initialize connection once
 
 exports.colls=function(){
@@ -22,6 +24,9 @@ exports.colls=function(){
 	  exports.sas_origin_coll = db.collection('sas_origines');
 	  exports.giftcoll=db.collection('gift');
 	  exports.pubcoll=db.collection('pub');
+	  exports.calendarcoll=db.collection('calendar');
+	  exports.gift_descoll=db.collection('gift_description');
+	  exports.challengecoll=db.collection('challenge');
 	  console.log('connected');
 
 	})
