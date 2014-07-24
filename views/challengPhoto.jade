@@ -30,9 +30,11 @@ block content
         include _challengizMenu
 
 
+
       div(style="position:relative;width:100%;height:auto;border:1px solid gray;margin-left:0px;margin-bottom:20px;")  
         div(style="width:100%;background-color:#428BCA;height:40px;padding-top:5px;border-bottom:0px solid black;") 
           p(style="font-weight:bold;font-size:16px;margin-left:10px;color:white;") Cr'eez des Challenges 
+
 
 
         div(style="width:100%;height:auto;padding-top:5px;border-bottom:0px solid black;" ) 
@@ -76,20 +78,14 @@ block content
                       .col-xs-8
                         input.form-control(type='text', placeholder='Enter Title' name="txttitle")
 
+                        
                     br    
                     .row
                       .col-xs-3
                         label  Question
                       .col-xs-5
                         input.form-control(type='text', placeholder='Enter Question' name="txtquestion")
-                      .col-xs-2
-                        input.form-control(type='text', name="txtvalidDate", placeholder='/  /' style="text-align:center;")
-                      .col-xs-1
-                        ul.gallery.clearfix(style="display:none;")
-
-                        ul.gallery.clearfix
-                          li
-                           img(src='http://localhost:8080/images/HomePage/Calendar.png', alt='Category', width='40')
+                  
 
                     br
                     .row
@@ -158,6 +154,35 @@ block content
                         label  
                       .col-xs-5
                         label Prix total du challenge: 150 eurose
+
+                    br
+                    .row
+                      .col-xs-3
+                        label Choose DateTime
+                    hr
+                    br 
+                    .row
+
+                          div(style="margin-left:10px;margin-top:0px;width:97%; overflow:scroll;")
+                         
+                              table(class="table table-bordered" style="text-align:center;")
+
+                                  thead(style="background-color:yellow;")
+                                    tr(class="success" style="color:#563D7C;background-color:#f3f5f3;")
+                                    - each cal in calendar
+                                      th=cal.challenge_date.getDate()+"-"+(cal.challenge_date.getMonth()+1)
+                                    tr(class="success" style="color:#563D7C;")
+                                    - each cal in calendar
+                                      th=cal.challenge_time
+                                  tbody
+                                      tr(style="height:58px !important;")
+                                  
+                                        - each cal in calendar
+                                          td=cal.price
+                                           label(name="lblprice"+i style="display:none;")=cal.price
+                                           input(type='checkbox' value=cal._id name="chvalue"+i)
+                                           
+
               - }   
 
               br 

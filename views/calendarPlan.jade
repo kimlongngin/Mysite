@@ -28,71 +28,75 @@ block content
 
       div(style="position:relative;width:100%;height:auto;border:1px solid gray;margin-left:0px;margin-bottom:20px;")  
         div(style="width:100%;background-color:#428BCA;height:40px;padding-top:5px;border-bottom:0px solid black;") 
-          p(style="font-weight:bold;font-size:16px;margin-left:10px;color:white;") Calendar List
+          p(style="font-weight:bold;font-size:16px;margin-left:10px;color:white;") CALENDAR LIST
 
-        div(style="width:100%;height:auto;padding-top:5px;border-bottom:0px solid black;margin-bottom:20px;margin-left:10px;margin-top:30px;" ) 
+        div(style="width:100%;height:auto;padding-top:5px;border-bottom:0px solid black;margin-bottom:20px;margin-left:10px;margin-top:30px;display:inline-block;" ) 
           
-          form.form-inline(role='form')
+          form.form-inline(role='form' action="calendarPlan" method="post")
             div.form-group
               .input-group
                 div(style="font-weight:bold;").input-group-addon Year
-                select.form-control
-                  option select
-                  option 2014
-                  option 2013
-                  option 2012
-                  option 2011
-                  option 2010
+                select(name="optyear").form-control
+                  option(disabled selected="selected" ) Year
+                  - each yeardoc1 in yeardoc
+                    option=yeardoc1.challenge_date.getFullYear()
+              
 
             div(style="margin-left:20px;").form-group
               .input-group
                 div(style="font-weight:bold;").input-group-addon Month
-                select.form-control
-                  option Select
-                  option 1
-                  option 2
-                  option 3
-                  option 4
-                  option 5
-                  option 6
-                  option 7
-                  option 8
-                  option 9
-                  option 10
-                  option 11
-                  option 12
+                select(name="optmonth").form-control
+                  option(disabled selected="selected" ) Month
+                  - for(var i=1;i<13;i++){
+                      - if(i<10){
+                        option="0"+i
+                      - }else{
+                        option=i
+                      - }
+                  - }
+                  
 
             div(style="margin-left:20px;").form-group
               .input-group
                 div(style="font-weight:bold;").input-group-addon Week
-                select.form-control
-                  option select
+                select(name="optweek").form-control
+                  option(disabled selected="selected" ) Week
                   option week 1
                   option week 2
                   option week 3
                   option week 4
                   
-       
+            
+
             div(style="margin-left:20px;").form-group      
               button(type='submit' class="btn btn-primary") Select
           
-        div()
-         
-          table(class="table table-bordered" style="text-align:center;")
-              thead
-                tr(class="danger" style="color:#563D7C;")
-                  th Hour
-                  - each cal in calendar
-                    th= cal.challenge_date.getDate()+"-"+cal.challenge_date.getMonth()
-                  
-              tbody
-                td
-                - each cal in calendar
-                 
-                    td=cal.challenge_time
-                tr
-                  td
-                  - each cal in calendar
-                    td=cal.price
-                     input(type='checkbox')
+            - if(calendar.length<=0 || calendar=="" || calendar==null){
+                h1 Please select date above
+            - }else{
+
+              div
+
+              div(style="position:relative;float:left;display:inline-block;border:0px solid black;width:60px;margin-top:20px;")  
+          
+                
+              div(style="margin-top:20px;width:97%; overflow:scroll;")
+             
+                  table(class="table table-bordered" style="text-align:center;")
+
+                      thead(style="background-color:yellow;")
+                        tr(class="success" style="color:#563D7C;background-color:#f3f5f3;")
+                        - each cal in calendar
+                          th=cal.challenge_date.getDate()+"-"+(cal.challenge_date.getMonth()+1)
+                        tr(class="success" style="color:#563D7C;")
+                        - each cal in calendar
+                          th=cal.challenge_time
+                      tbody
+                        
+                          
+                          tr(style="height:58px !important;")
+                            - each cal in calendar
+                              td=cal.price
+                               input(type='checkbox' value=cal.price+" "+cal.challenge_date+" "+cal.challenge_time)
+            - }
                       

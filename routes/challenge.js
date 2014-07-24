@@ -53,7 +53,23 @@ exports.ChallengePhoto=function(req,res,key)
 			}else{
 				console.log("Result");
 				console.log(result);
-				res.render('challengPhoto',{title:"Challeng Photo",number:num,data:result});
+
+				con.calendarcoll.find().sort({challenge_time:1,challenge_date:1}).limit(13).toArray(function(err,calendarResult){
+					
+					if(err)
+					{
+						console.log("You get an error while retrieving data");
+						console.log(err);
+						//res.send("<form></form>")
+					}else{
+						console.log("Calendar Result");
+						console.log(calendarResult);
+						res.render('challengPhoto',{title:"Challeng Photo",number:num,data:result,calendar:calendarResult});
+					}
+
+				})
+
+				
 			}
 			
 		});
@@ -71,7 +87,6 @@ exports.ChallengePhotoPost=function(req,res,key)
 	id=myid.slice(3,27);
 	console.log(myid);
 	console.log("My ID:"+id);
-
 	
 	var txttitle=req.body.txttitle;
 	var txtquestion=req.body.txtquestion;
@@ -87,83 +102,101 @@ exports.ChallengePhotoPost=function(req,res,key)
 	var txtdescrption=req.body.txtdescrption;
 
 	var content=req.body;
-	console.log("++++++++++++++++++++++")
+	var chvalue=[[req.body.chvalue0],[req.body.chvalue1],[req.body.chvalue2],[req.body.chvalue3],[req.body.chvalue4],[req.body.chvalue5]];
+	var mainArr=[];
 
+	
+
+
+	console.log("ChValue :");
+	console.log(chvalue);
+	console.log("++++++++++++++++++++++")
 	console.log(txtdescrption);
 	console.log(req.body);
+	var j=0;
+	var diff=[];
+	var mainDiff=[];
 
-
-	if(id=="" || id==0){
-		console.log("Please login!");                                                            
-	}else{
-
-		if(req.body.btnsave=="Save")
-		{
-			
-			//res.redirect('ChallengePhoto');
-
-			console.log("Save Was Click");
-
-			if(_underscore.isArray(content.txttitle))
+	
+		for(var n=0;n<content.txttitle.length-1;n++){
+			for(var j=n+1;j<content.txttitle.length;j++)
 			{
-				for(var i=0;i<content.txttitle.length;i++)
+				diff=_underscore.difference(chvalue[n], chvalue[j]);
+				console.log("Some permission:");
+				console.log(diff);
+
+				if(diff.length<chvalue[n].length)
 				{
-					console.log("Values Of I:"+i);
-					var objectId=new ObjectId();
+					res.send("<h1>duplicate calendar checked, Please change</h1><a href=/challengPhoto>Try again</a>")
+					break;
+				}
+			
 
-					console.log("You put data as array!");
-					con.challengecoll.save({_id:objectId,type:"photo",client_id:id,title:txttitle[i],
-						question:txtquestion[i],gift1:optgift1[i],gift2:optgift2[i],Advertising:optphotsociety[i],
-						valid_date:new Date(txtvalidDate),description:txtdescrption[i],created_date:new Date()
-					
-					},function(err){
+				else if (n>=content.txttitle.length-2) {
+				//console.log(diff);
+					if(id=="" || id==0){
+						console.log("Please login!");                                                            
+					}else{
+						if(req.body.btnsave=="Save")
+						{	
+							//res.redirect('ChallengePhoto');
+							console.log("Save Was Click");
+							if(_underscore.isArray(content.txttitle))
+							{
+								for(var i=0;i<content.txttitle.length;i++)
+								{
+									console.log("Date Value:");
+									console.log(chvalue[i]);
 
-						if(err)
+									var objectId=new ObjectId();
+									console.log("You put data as array!");
+									con.challengecoll.save({_id:objectId,type:"photo",client_id:id,title:txttitle[i],
+									question:txtquestion[i],gift1:optgift1[i],gift2:optgift2[i],Advertising:optphotsociety[i],
+									calendar_id:chvalue[i],description:txtdescrption[i],created_date:new Date()					
+									},function(err){
+										if(err)
+										{
+											console.log("You get error while insert new challengiz");
+											console.log(err);
+										}else
+										{
+											console.log("You get success while insert new challengiz");
+										}
+									});
+								}
+								res.redirect('/challengPhoto');
+
+
+							}else{
+								console.log("You put data as Object!");
+
+								con.challengecoll.insert({_id:objectId,type:"photo",client_id:id,title:txttitle,
+									question:txtquestion,gift1:optgift1,gift2:optgift2,Advertising:optphotsociety,
+									calendar_id:chvalue,description:txtdescrption,created_date:new Date()				
+								},function(err){
+									if(err)
+									{
+										console.log("You get error while insert new challengiz");
+										console.log(err);
+									}else
+									{
+										console.log("You get success while insert new challengiz");
+										res.send("<script>alert(Insert sucess full); window.location='/challengPhoto';</script>")
+										
+										res.redirect('/challengPhoto');
+									}
+
+								});
+							}
+						}else if(req.body.btncancel=="Cancel")
 						{
-							console.log("You get error while insert new challengiz");
-							console.log(err);
+							console.log("Cancel button was clicked");
 						}else
 						{
-							console.log("You get success while insert new challengiz");
-							
+							console.log("Pay was clicked");
 						}
-
-					});
-				
-				}
-				
-				res.redirect('/challengPhoto');
-
-			}else{
-				console.log("You put data as Object!");
-
-				con.challengecoll.insert({_id:objectId,type:"photo",client_id:id,title:txttitle,
-					question:txtquestion,gift1:optgift1,gift2:optgift2,Advertising:optphotsociety,
-					valid_date:new Date(txtvalidDate),description:txtdescrption,created_date:new Date()
-				
-				},function(err){
-
-					if(err)
-					{
-						console.log("You get error while insert new challengiz");
-						console.log(err);
-					}else
-					{
-						console.log("You get success while insert new challengiz");
-						res.redirect('/challengPhoto');
 					}
-
-				});
-			}
-
-
-
-		}else if(req.body.btncancel=="Cancel")
-		{
-			console.log("Cancel button was clicked");
-		}else
-		{
-			console.log("Pay was clicked");
+			};
 		}
 	}
 }
@@ -200,14 +233,27 @@ exports.ChallengeQuizz=function(req,res,key)
 				console.log(err)
 			}else{
 				console.log("Result");
-				console.log(result);
-				res.render('challengeQuizz',{title:"Challeng Photo",number:num,data:result});
+				//console.log(result);
+
+				con.calendarcoll.find().sort({challenge_time:1,challenge_date:1}).limit(13).toArray(function(err,calendarResult){
+					if(err)
+					{
+						console.log("You get an error while retrieving data");
+						console.log(err);
+						//res.send("<form></form>")
+					}else{
+						console.log("Calendar Result");
+						console.log(calendarResult);
+						//res.render('challengPhoto',{title:"Challeng Photo",number:num,data:result,calendar:calendarResult});
+						res.render('challengeQuizz',{title:"Challeng Photo",number:num,data:result,calendar:calendarResult});
+					}
+				})				
 			}
 			
-		});
-				
+		});				
 	}
 }
+
 
 
 exports.challengeQuizzPost=function(req,res,key)
@@ -234,6 +280,9 @@ exports.challengeQuizzPost=function(req,res,key)
 	var optgift2=req.body.optgift2;
 	var optphotsociety=req.body.optphotsociety;
 	var txtdescrption=req.body.txtdescrption;
+	var chvalue=[[req.body.chvalue0],[req.body.chvalue1],[req.body.chvalue2],[req.body.chvalue3],[req.body.chvalue4],[req.body.chvalue5]];
+	console.log("+++++++++++++++++++Quizz+++++++++++++++++")
+	console.log(chvalue);
 
 	var content=req.body;
 	console.log("++++++++++++++++++++++")
@@ -241,80 +290,106 @@ exports.challengeQuizzPost=function(req,res,key)
 	console.log(txtdescrption);
 	console.log(req.body);
 
+	var j=0;
+	var diff=[];
+	var mainDiff=[];
 
-	if(id=="" || id==0){
-		console.log("Please login!");                                                            
-	}else{
-
-		if(req.body.btnsave=="Save")
+	for(var i=0;i<content.txttitle.length-1;i++){
+		for(var j=i+1;j<content.txttitle.length;j++)
 		{
-			
-			//res.redirect('ChallengePhoto');
+			diff=_underscore.difference(chvalue[i], chvalue[j]);
+			//mainDiff.push(diff);
+			console.log("Some permission:");
+			console.log(diff)
 
-			console.log("Save Was Click");
-
-			if(_underscore.isArray(content.txttitle))
+		// ++++++++++++++++ Start check the calendar id douplicated +++++++++++++	
+			if(diff.length<chvalue[i].length)
 			{
-				for(var i=0;i<content.txttitle.length;i++)
-				{
-					console.log("Values Of I:"+i);
-					var objectId=new ObjectId();
+				res.send("<h1>duplicate calendar checked, Please change</h1><a href=/challengeQuizz>Try again</a>")
+				break;
+			}else if (n>=content.txttitle.length-2) {
+			
+		// ++++++++++++++++ Start execute insert query to table +++++++++++++++++  
+				if(id=="" || id==0){
+					console.log("Please login!");                                                            
+				}else{
+					if(req.body.btnsave=="Save")
+					{
+						
+						//res.redirect('ChallengePhoto');
 
-					console.log("You put data as array!");
-					con.challengecoll.save({_id:objectId,type:"quizz",client_id:id,title:txttitle[i],
-						question:txtquestion[i],gift1:optgift1[i],gift2:optgift2[i],Advertising:optphotsociety[i],
-						valid_date:new Date(txtvalidDate),description:txtdescrption[i],created_date:new Date()
-					
-					},function(err){
+						console.log("Save Was Click");
 
-						if(err)
+						if(_underscore.isArray(content.txttitle))
 						{
-							console.log("You get error while insert new challengiz");
-							console.log(err);
-						}else
-						{
-							console.log("You get success while insert new challengiz");
+							for(var i=0;i<content.txttitle.length;i++)
+							{
+								console.log("Values Of I:"+i);
+								var objectId=new ObjectId();
+
+								console.log("You put data as array!");
+								con.challengecoll.save({_id:objectId,type:"quizz",client_id:id,title:txttitle[i],
+									question:txtquestion[i],gift1:optgift1[i],gift2:optgift2[i],Advertising:optphotsociety[i],
+									valid_date:chvalue[i],description:txtdescrption[i],created_date:new Date()
+								
+								},function(err){
+
+									if(err)
+									{
+										console.log("You get error while insert new challengiz");
+										console.log(err);
+									}else
+									{
+										console.log("You get success while insert new challengiz");
+										
+									}
+
+								});
+							}
 							
+							res.redirect('/challengeQuizz');
+
+						}else{
+							console.log("You put data as Object!");
+
+							con.challengecoll.insert({_id:objectId,type:"quizz",client_id:id,title:txttitle,
+								question:txtquestion,gift1:optgift1,gift2:optgift2,Advertising:optphotsociety,
+								valid_date:chvalue,description:txtdescrption,created_date:new Date()
+							
+							},function(err){
+
+								if(err)
+								{
+									console.log("You get error while insert new challengiz");
+									console.log(err);
+								}else
+								{
+									console.log("You get success while insert new challengiz");
+									//console.log("<html><head><script>alert(Insert sucess full);</script></head><body><h1>Duplicate calendar checked</h1></body></html>")
+									res.redirect('/challengeQuizz');
+								}
+
+							});
 						}
 
-					});
-				}
-				
-				res.redirect('/challengeQuizz');
 
-			}else{
-				console.log("You put data as Object!");
 
-				con.challengecoll.insert({_id:objectId,type:"quizz",client_id:id,title:txttitle,
-					question:txtquestion,gift1:optgift1,gift2:optgift2,Advertising:optphotsociety,
-					valid_date:new Date(txtvalidDate),description:txtdescrption,created_date:new Date()
-				
-				},function(err){
-
-					if(err)
+					}else if(req.body.btncancel=="Cancel")
 					{
-						console.log("You get error while insert new challengiz");
-						console.log(err);
+						console.log("Cancel button was clicked");
 					}else
 					{
-						console.log("You get success while insert new challengiz");
-						res.redirect('/challengeQuizz');
+						console.log("Pay was clicked");
 					}
 
-				});
+				}
 			}
-
-
-
-		}else if(req.body.btncancel=="Cancel")
-		{
-			console.log("Cancel button was clicked");
-		}else
-		{
-			console.log("Pay was clicked");
-		}
-
+		
+		}	
 	}
+	console.log("Some permission from mainDiff:");
+	console.log(mainDiff);
+
 }
 
 
@@ -710,26 +785,34 @@ exports.Calendar=function(req,res)
 
 exports.CalendarPost=function(req, res)
 {
-	var txtdate=req.body.txtdate;
-	var txttime=req.body.s2Time2;
-	var txttimestamp=txtdate+txttime;
+	/*var arrtime=[{
+		"1":"1:00 AM"
+	}];*/
+
+	var txtdate=new Date(req.body.txtdate);
+	var tmonth=(new Date(req.body.txtdate).getMonth()+1);
+	console.log("T Month:"+tmonth);
+	//var txttime=req.body.s2Time2;
+	//var txttimestamp=txtdate+txttime;
+	console.log("Date Inserting:"+txtdate);
 	var txtprice=req.body.txtprice;
 	var txtweek =req.body.optweek;
+	var hour=req.body.opthours;
+	var minute=req.body.optminutes;
+	var hourminute=hour+":"+minute;
+	console.log("Hours:"+hourminute);
 
-	/*console.log(txtdate+","+txttime+","+txtprice);*/
-	
+	/*console.log(txtdate+","+txttime+","+txtprice);*/	
 	
 	var objectId=new ObjectId();
 
-	if(_underscore.isNull(txtdate) || _underscore.isNull(txttime) || _underscore.isNull(txtprice))
+	if(_underscore.isNull(txtdate) || _underscore.isNull(hourminute) || _underscore.isNull(txtprice))
 	{
 		res.send("<h1>Some fields is Empty Please check it again</h1> <a href=calendar>Back</a>");
 	}else
 	{
-
-
 		console.log("Start Executing!")
-		con.calendarcoll.find({challenge_date:new Date(txtdate),week:txtweek,challenge_time:txttime}).toArray(function(err,result){
+		con.calendarcoll.find({challenge_date:new Date(txtdate),week:txtweek,challenge_time:hourminute}).toArray(function(err,result){
 			if(err)
 			{
 				console.log("You get an error while selecting!");
@@ -740,7 +823,7 @@ exports.CalendarPost=function(req, res)
 				console.log(result);
 				if(result.length==0 || result == null || result =="" || result.length<0)
 				{
-					con.calendarcoll.save({_id:objectId,challenge_date:new Date(txtdate),week:txtweek,challenge_time:txttime,price:txtprice,is_available:0,created:new Date()}, function(err){
+					con.calendarcoll.save({_id:objectId,challenge_date:new Date(txtdate),year:(new Date(txtdate)).getFullYear(),month:tmonth,week:txtweek,challenge_time:hourminute,price:txtprice,is_available:0,created:new Date()}, function(err){
 		
 						if(err)
 						{

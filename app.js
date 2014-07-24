@@ -122,6 +122,7 @@ app.post('/calendar', challengRoutes.CalendarPost);
 
 /*++++++++++++++++++++++ The calendar Rotes +++++++++++++++++++++++++++++++++*/
 app.get('/calendarPlan', calendarRoutes.calendarPlan);
+app.post('/calendarPlan',calendarRoutes.calendarPlanPost);
 
 
 /// catch 404 and forwarding to error handler

@@ -146,6 +146,28 @@ block content
                       textarea.form-control(rows="4" cols="50" name="txtdescrption")
 
 
+                  hr
+                  br 
+                  .row
+                      div(style="margin-left:10px;margin-top:0px;width:97%; overflow:scroll;")
+                     
+                          table(class="table table-bordered" style="text-align:center;")
+
+                              thead(style="background-color:yellow;")
+                                tr(class="success" style="color:#563D7C;background-color:#f3f5f3;")
+                                - each cal in calendar
+                                  th=cal.challenge_date.getDate()+"-"+(cal.challenge_date.getMonth()+1)
+                                tr(class="success" style="color:#563D7C;")
+                                - each cal in calendar
+                                  th=cal.challenge_time
+                              tbody
+                                  tr(style="height:58px !important;")
+                              
+                                    - each cal in calendar
+                                      td=cal.price
+                                       label(name="lblprice"+i style="display:none;")=cal.price
+                                       input(type='checkbox' value=cal.challenge_date name="chvalue"+i)  
+
 
                   br
                   .row
@@ -153,6 +175,9 @@ block content
                       label  
                     .col-xs-5
                       label Prix total du challenge: 150 eurose
+
+
+
 
             - }    
             .row
