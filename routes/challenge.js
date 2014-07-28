@@ -77,6 +77,22 @@ exports.ChallengePhoto=function(req,res,key)
 	}
 }
 
+/*++++++++++++++++++++++ Function for update is_available in calendar table ++++++++++++++++*/
+app.UpdateCalendar=function(txtid)
+{
+	var objectId=new ObjectId(); 
+	con.calendarcoll.update({_id:objectId(txtid)},{"is_available":1},function(err,sucess){
+		if(err)
+		{
+			console.log("You error while updae is_available in calendar table");
+			console.log(err);
+		}else{
+			console.log("Update is_available calendar was successfully!");
+		}
+	});
+}
+
+
 exports.ChallengePhotoPost=function(req,res,key)
 {
 	console.log("Challeng Photo is executing...");
@@ -101,39 +117,47 @@ exports.ChallengePhotoPost=function(req,res,key)
 	var optphotsociety=req.body.optphotsociety;
 	var txtdescrption=req.body.txtdescrption;
 
+
 	var content=req.body;
 	var chvalue=[[req.body.chvalue0],[req.body.chvalue1],[req.body.chvalue2],[req.body.chvalue3],[req.body.chvalue4],[req.body.chvalue5]];
 	var mainArr=[];
 
-	
 
 
 	console.log("ChValue :");
 	console.log(chvalue);
-	console.log("++++++++++++++++++++++")
+	console.log("+++++++++++++++++++++++++++++++++++++++++++++++");
 	console.log(txtdescrption);
 	console.log(req.body);
 	var j=0;
 	var diff=[];
 	var mainDiff=[];
 
-	
-		for(var n=0;n<content.txttitle.length-1;n++){
-			for(var j=n+1;j<content.txttitle.length;j++)
+			if(_underscore.isArray(content.txttitle))
 			{
-				diff=_underscore.difference(chvalue[n], chvalue[j]);
-				console.log("Some permission:");
-				console.log(diff);
+				for(var n=0;n<content.txttitle.length-1;n++){
+					for(var j=n+1;j<content.txttitle.length;j++)
+					{
+						diff=_underscore.difference(chvalue[n], chvalue[j]);
+						console.log("Some permission:");
+						console.log(diff);
 
-				if(diff.length<chvalue[n].length)
-				{
-					res.send("<h1>duplicate calendar checked, Please change</h1><a href=/challengPhoto>Try again</a>")
-					break;
+						if(diff.length<chvalue[n].length)
+						{
+							res.send("<h1>duplicate calendar checked, Please change</h1><a href=/challengPhoto>Try again</a>")
+							break;
+						}else{
+							goto start;
+						}
+					}
 				}
-			
+			}else{
 
-				else if (n>=content.txttitle.length-2) {
+
+				//else if (n>=content.txttitle.length-2) {}
 				//console.log(diff);
+
+				start:
 					if(id=="" || id==0){
 						console.log("Please login!");                                                            
 					}else{
@@ -143,6 +167,7 @@ exports.ChallengePhotoPost=function(req,res,key)
 							console.log("Save Was Click");
 							if(_underscore.isArray(content.txttitle))
 							{
+
 								for(var i=0;i<content.txttitle.length;i++)
 								{
 									console.log("Date Value:");
@@ -160,6 +185,28 @@ exports.ChallengePhotoPost=function(req,res,key)
 											console.log(err);
 										}else
 										{
+											
+
+
+										/*+++++++++++++++++ Update the calendar ++++++++++++++++++++*/
+										for(var k=0;k<chvalue[i].length;k++)
+										{
+											console.log("Update calendar Array")
+
+											con.calendarcoll.update({_id:objectId(chvalue[k])},{$set:{"is_available":1}},function(err,sucess){
+												if(err)
+												{
+													console.log("You error while updae is_available in calendar table");
+													console.log(err);
+												}else{
+													console.log("Update is_available calendar was successfully!");
+												}
+											});
+										}
+
+
+
+
 											console.log("You get success while insert new challengiz");
 										}
 									});
@@ -172,7 +219,7 @@ exports.ChallengePhotoPost=function(req,res,key)
 
 								con.challengecoll.insert({_id:objectId,type:"photo",client_id:id,title:txttitle,
 									question:txtquestion,gift1:optgift1,gift2:optgift2,Advertising:optphotsociety,
-									calendar_id:chvalue,description:txtdescrption,created_date:new Date()				
+									calendar_id:chvalue[0],description:txtdescrption,created_date:new Date()				
 								},function(err){
 									if(err)
 									{
@@ -181,8 +228,24 @@ exports.ChallengePhotoPost=function(req,res,key)
 									}else
 									{
 										console.log("You get success while insert new challengiz");
-										res.send("<script>alert(Insert sucess full); window.location='/challengPhoto';</script>")
 										
+										
+										/*+++++++++++++++++++++ Update the calendar +++++++++++++++++++++*/
+										for(var k=0;k<req.body.chvalue0.length;k++)
+										{
+											//var obj=new ObjectId(); 
+											console.log("Updating calendar Values:");
+											con.calendarcoll.update({_id:ObjectId(req.body.chvalue0[k])},{$set:{"is_available":1}},function(err,sucess){
+												if(err)
+												{
+													console.log("You error while updae is_available in calendar table");
+													console.log(err);
+												}else{
+													console.log("Update is_available calendar was successfully!");
+												}
+											});
+										}
+									
 										res.redirect('/challengPhoto');
 									}
 
@@ -196,9 +259,9 @@ exports.ChallengePhotoPost=function(req,res,key)
 							console.log("Pay was clicked");
 						}
 					}
-			};
-		}
-	}
+				}
+		
+	
 }
 
 

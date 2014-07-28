@@ -110,7 +110,7 @@ block content
                       //input.form-control(type='text',name='s2Time2', placeholder="Enter Time" data-field="time" value="" required)
                       select(name="opthours").form-control
                         option(disabled selected="selected" ) Hours
-                        - for(var i=1;i<25;i++){
+                        - for(var i=0;i<24;i++){
                           - if(i<10){
                             option="0"+i
                           - }else{
